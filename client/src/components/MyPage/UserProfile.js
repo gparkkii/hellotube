@@ -15,16 +15,12 @@ import {
   StyledTextArea,
   BorderButton,
   ColumnBox,
-  BigAvatar,
-  AvatarImage,
-  BlankBox,
-  BlankName,
   MarginBox,
 } from 'styles/form/styles';
 import { ErrorMessage, InputAlert } from 'styles/typography/styles';
-import { useColorMaker } from 'hooks/useColorMaker';
+import UserAvatar from '../common/UserAvatar';
 
-const EditForm = ({ profileData, createGravatar, readOnly }) => {
+const EditForm = ({ profileData, readOnly }) => {
   const {
     register,
     handleSubmit,
@@ -41,7 +37,6 @@ const EditForm = ({ profileData, createGravatar, readOnly }) => {
   });
 
   const _id = useSelector(state => state.user.profile?._id);
-  const [BlankBg, BlankColor] = useColorMaker(createGravatar);
 
   const onSubmit = useCallback(
     data => {
@@ -60,25 +55,7 @@ const EditForm = ({ profileData, createGravatar, readOnly }) => {
     <>
       <FormBox onSubmit={handleSubmit(onSubmit)}>
         <ColumnBox>
-          <BigAvatar>
-            {profileData.profileImageType === 'blank' ? (
-              <BlankBox>
-                <AvatarImage
-                  backgroundColor={BlankBg}
-                  src={profileData.profileImage}
-                  alt={`${profileData.name}'s profile`}
-                />
-                <BlankName color={BlankColor}>
-                  {profileData.nickname.substring(0, 2)}
-                </BlankName>
-              </BlankBox>
-            ) : (
-              <AvatarImage
-                src={profileData.profileImage}
-                alt={`${profileData.name}'s profile`}
-              />
-            )}
-          </BigAvatar>
+          <UserAvatar />
         </ColumnBox>
         <MarginBox margin="8px" />
         <InputBox>

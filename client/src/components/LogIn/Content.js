@@ -18,7 +18,6 @@ import StyledCheckBox from 'styles/form/StyledCheckBox';
 import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import logo from 'assets/logo.png';
 import OAuthLogin from './OAuth/OAuthLogin';
 
 function Content({ history }) {
@@ -57,7 +56,9 @@ function Content({ history }) {
   return (
     <>
       <FormBox onSubmit={handleSubmit(onSubmit)}>
-        <LogoTitle>HelloTube ❋</LogoTitle>
+        <LogoTitle>
+          <Link to="/">HelloTube ❋</Link>
+        </LogoTitle>
         <InputBox>
           <label
             className={errors.email ? 'errorTypeLabel' : null}
