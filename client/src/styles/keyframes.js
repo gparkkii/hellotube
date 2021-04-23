@@ -6,7 +6,7 @@ export const bounce = keyframes`
   }
 
   40%, 43% {
-    transform: translate3d(0, -30px, 0);
+    transform: translate3d(0, -45px, 0);
   }
 
   70% {
@@ -27,5 +27,17 @@ export const spin = keyframes`
 export const spinReverse = keyframes`
   100% {
     transform: rotate(-360deg);
+  }
+`;
+
+export const slidein = keyframes`
+  from {
+    margin-left: 100%;
+    width: 300%
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
   }
 `;

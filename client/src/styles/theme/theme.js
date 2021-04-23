@@ -8,11 +8,11 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
-  bgColor: '#2E2D36',
+  bgColor: '#222529',
   textColor: '#eaeaea',
   borderColor: '1px solid #3c3f43',
-  inputFilled: '#444452',
-  contentBox: '#34333c',
+  inputFilled: '#3c3f43',
+  contentBox: '#2B2E32',
   boxShadow: '0 2px 4px 0 rgba(50, 50, 50, 0.25)',
 };
 

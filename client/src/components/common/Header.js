@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from 'modules/actions/user';
 import { useTheme } from 'context/themeProvider';
 import styled from 'styled-components';
+import logo from 'assets/logo.png';
 import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
@@ -21,8 +22,8 @@ const Header = () => {
     <StyledHeader>
       <nav>
         <NavLink to="/">
-          <h2>👩🏼‍💻</h2>
-          <p>gparkkii</p>
+          <img src={logo} alt="logo" />
+          <p>HelloTube</p>
         </NavLink>
       </nav>
       <nav>
@@ -81,6 +82,11 @@ const StyledHeader = styled.header`
       & p {
         font-size: 18px;
         font-weight: 600;
+        color: #f02330;
+      }
+      & img {
+        width: 30px;
+        margin-right: 4px;
       }
     }
   }
