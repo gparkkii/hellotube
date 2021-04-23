@@ -1,0 +1,38 @@
+{
+  "name": "create-my-app",
+  "version": "1.0.0",
+  "description": "MERN STACK BOILERPLATE",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js",
+    "server": "nodemon server/index.js",
+    "client": "npm run start --prefix client",
+    "predev": "kill -9 $(lsof -i :5000 | grep -i -E -o '\\s[0-9]+\\s') || true",
+    "dev": "concurrently \"npm run start\" \"npm run start --prefix client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gparkkii/create-my-app.git"
+  },
+  "author": "Ji Yeon Park <jyp933@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gparkkii/create-my-app/issues"
+  },
+  "homepage": "https://github.com/gparkkii/create-my-app#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "crypto-js": "^4.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.3",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.1",
+    "nodemon": "^2.0.7"
+  }
+}
