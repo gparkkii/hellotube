@@ -1,5 +1,5 @@
-# create-my-app
-> MongoDB, Express, Node.js, React.js 를 이용한 boilerplate 입니다.
+# 🎥HelloTube
+> MongoDB, Express, Node.js, React.js 를 이용해서 만든 동영상 공유 플랫폼입니다.
 
 [![npm](https://img.shields.io/npm/v/npm)](https://github.com/gparkkii/create-my-app)
 [![license](https://img.shields.io/github/license/gparkkii/create-my-app)](https://github.com/gparkkii/create-my-app)
@@ -8,8 +8,7 @@
 
 <br/>
 
-react-webpack-template에 더 많은 기능들과 스타일을 develop한 M.E.R.N stack boilerplate입니다.
-
+직접 만든 create-my-app 템플릿을 이용해서 build한 동영상 공유 플랫폼입니다.
 <br/>
 
 ---
@@ -21,7 +20,7 @@ react-webpack-template에 더 많은 기능들과 스타일을 develop한 M.E.R.
 - 애플리케이션 설치
 
 ```bash
-$> git clone https://github.com/gparkkii/create-my-app.git
+$> git clone https://github.com/gparkkii/hellotube.git
 $> npm i
 ```
 
