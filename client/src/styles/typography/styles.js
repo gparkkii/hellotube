@@ -5,9 +5,24 @@ export const MainTitle = styled.h2`
   font-weight: 500;
 `;
 
+export const LogoTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  & img {
+    width: 36px;
+    margin-right: 4px;
+  }
+`;
+
 export const ContentTitle = styled.h2`
-  font-size: 28px;
-  font-weight: 600;
+  font-size: 30px;
+  font-weight: 700;
   margin-bottom: 10px;
 `;
 
@@ -33,7 +48,7 @@ export const InputAlert = styled.p`
 `;
 
 export const AlertMessage = styled.p`
-  color: #4957a5;
+  color: #eb5650;
   font-size: 14px;
   width: 100%;
   text-align: center;
@@ -45,7 +60,7 @@ export const UserTitle = styled.h2`
   font-weight: 500;
   margin-left: 4px;
   & strong {
-    color: #3f51b5;
+    color: #eb5650;
     font-weight: 600;
   }
 `;
@@ -57,7 +72,7 @@ export const ProfileTitle = styled.h2`
   text-align: center;
   margin: 28px 0px;
   & strong {
-    color: #4957a5;
+    color: #eb5650;
   }
 `;
 

@@ -56,7 +56,7 @@ export const InputBox = styled.div`
     color: ${({ theme }) => theme.textColor};
   }
   &: focus-within {
-    color: #4957a5;
+    color: #eb5650;
   }
 `;
 
@@ -80,14 +80,14 @@ export const OutlinedInput = styled.input`
   height: 48px;
   padding: 0px 14px;
   background-color: transparent;
-  border: 1px solid #c1c8f0;
-  border-radius: 4px;
+  border: 1px solid #f2c4c2;
+  border-radius: 8px;
   &:hover {
-    border: 1px solid #4957a5;
+    border: 1px solid #eb5650;
   }
   &:focus {
-    border: 1px solid #4957a5;
-    box-shadow: inset 0 0 0 1px #4957a5;
+    border: 1px solid #eb5650;
+    box-shadow: inset 0 0 0 1px #eb5650;
   }
 `;
 
@@ -101,11 +101,11 @@ export const FilledInput = styled.input`
   border-radius: 30px;
   margin-top: 2px;
   &:hover {
-    border: 1px solid #4957a5;
+    border: 1px solid #eb5650;
   }
   &:focus {
-    border: 1px solid #4957a5;
-    box-shadow: inset 0 0 0 1px #4957a5;
+    border: 1px solid #eb5650;
+    box-shadow: inset 0 0 0 1px #eb5650;
   }
   ${props =>
     props.readOnly &&
@@ -121,15 +121,15 @@ export const UnderlinedInput = styled.input`
   height: 42px;
   padding: 0px 10px;
   font-size: 16px;
-  color: #4957a5;
+  color: #eb5650;
   background-color: transparent;
   border: 1px solid transparent;
   border-bottom: 1px solid #ccc;
   &:hover {
-    border-bottom: 1px solid #4957a5;
+    border-bottom: 1px solid #eb5650;
   }
   &:focus {
-    border-bottom: 1px solid #4957a5;
+    border-bottom: 1px solid #eb5650;
   }
 `;
 
@@ -145,7 +145,7 @@ export const BorderButton = styled.button`
   margin-top: ${props => props.marginTop || '10px'};
   font-size: 16px;
   color: #fff;
-  background-color: #4957a5;
+  background-color: #eb5650;
   border-radius: 30px;
 `;
 
@@ -155,8 +155,8 @@ export const FilledButton = styled.button`
   margin-top: ${props => props.marginTop || '10px'};
   font-size: 16px;
   color: #fff;
-  background-color: #4957a5;
-  border-radius: 4px;
+  background-color: #eb5650;
+  border-radius: 8px;
 `;
 
 export const OutlinedButton = styled.button`
@@ -164,8 +164,8 @@ export const OutlinedButton = styled.button`
   height: 52px;
   margin-top: ${props => props.marginTop || '10px'};
   font-size: 16px;
-  color: #4957a5;
-  border: 1px solid #4957a5;
+  color: #eb5650;
+  border: 1px solid #eb5650;
   border-radius: 4px;
 `;
 
@@ -177,11 +177,11 @@ export const StyledTextArea = styled.textarea`
   color: ${({ theme }) => theme.textColor};
   background-color: ${({ theme }) => theme.inputFilled};
   &:hover {
-    border: 1px solid #4957a5;
+    border: 1px solid #eb5650;
   }
   &:focus {
-    border: 1px solid #4957a5;
-    box-shadow: inset 0 0 0 1px #4957a5;
+    border: 1px solid #eb5650;
+    box-shadow: inset 0 0 0 1px #eb5650;
   }
   ${props =>
     props.readOnly &&
@@ -202,7 +202,7 @@ export const SocialLogin = styled.div`
   justify-content: center;
   width: 33.3%;
   height: 48px;
-  border-radius: 30px;
+  border-radius: 6px;
   box-shadow: ${({ theme }) => theme.boxShadow};
   cursor: pointer;
   color: ${props => props.color || '#757575'};
@@ -281,13 +281,13 @@ export const AvatarLabelBox = styled.div`
   & label {
     width: 33.3%;
     height: 48px;
-    border: 1px solid #c1c8f0;
+    border: 1px solid #f2c4c2;
     border-radius: 30px;
     font-size: 15px;
     line-height: 48px;
     text-align: center;
     &: hover {
-      border: 1px solid #4957a5;
+      border: 1px solid #eb5650;
     }
   }
 `;

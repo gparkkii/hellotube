@@ -4,13 +4,13 @@ import { useDispatch } from 'react-redux';
 import { loginUser } from 'modules/actions/user';
 import { useForm } from 'react-hook-form';
 import { PasswordError, EmailError } from 'library/options/errors';
-import { ContentTitle, ErrorMessage } from 'styles/typography/styles';
+import { ErrorMessage, LogoTitle } from 'styles/typography/styles';
 import {
   FormBox,
   InputBox,
   AbsoluteBox,
-  FilledInput,
-  BorderButton,
+  OutlinedInput,
+  FilledButton,
   AbsoluteButton,
 } from 'styles/form/styles';
 import styled from 'styled-components';
@@ -18,6 +18,7 @@ import StyledCheckBox from 'styles/form/StyledCheckBox';
 import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import logo from 'assets/logo.png';
 import OAuthLogin from './OAuth/OAuthLogin';
 
 function Content({ history }) {
@@ -55,8 +56,8 @@ function Content({ history }) {
 
   return (
     <>
-      <ContentTitle>시작하기</ContentTitle>
       <FormBox onSubmit={handleSubmit(onSubmit)}>
+        <LogoTitle>HelloTube ❋</LogoTitle>
         <InputBox>
           <label
             className={errors.email ? 'errorTypeLabel' : null}
@@ -64,7 +65,7 @@ function Content({ history }) {
           >
             이메일
           </label>
-          <FilledInput
+          <OutlinedInput
             id="email"
             name="email"
             type="text"
@@ -87,7 +88,7 @@ function Content({ history }) {
             비밀번호
           </label>
           <AbsoluteBox>
-            <FilledInput
+            <OutlinedInput
               id="password"
               name="password"
               type={ShowPassword ? 'text' : 'password'}
@@ -131,9 +132,9 @@ function Content({ history }) {
           checked={RememberId}
           onChange={handleChange}
         />
-        <BorderButton type="submit" onClick={handleSubmit(onSubmit)}>
+        <FilledButton type="submit" onClick={handleSubmit(onSubmit)}>
           로그인
-        </BorderButton>
+        </FilledButton>
       </FormBox>
       <FormBox>
         <LineBox>
@@ -186,6 +187,6 @@ const TextBox = styled.div`
   & span:last-child {
     font-weight: 500;
     font-size: inherit;
-    color: #4957a5;
+    color: #eb5650;
   }
 `;

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useCallback } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
@@ -39,18 +40,21 @@ const EditForm = ({ profileData, createGravatar, readOnly }) => {
     mode: 'onTouched',
   });
 
-  const { _id } = useSelector(state => state.user.profile);
+  const _id = useSelector(state => state.user.profile?._id);
   const [BlankBg, BlankColor] = useColorMaker(createGravatar);
 
-  const onSubmit = useCallback(data => {
-    axios.post('api/user/update', { _id, data }).then(response => {
-      if (response.data.success) {
-        alert(`${response.data.message}`);
-      } else {
-        alert(`${response.data.message}`);
-      }
-    });
-  }, []);
+  const onSubmit = useCallback(
+    data => {
+      axios.post('api/user/update', { _id, data }).then(response => {
+        if (response.data.success) {
+          alert(`${response.data.message}`);
+        } else {
+          alert(`${response.data.message}`);
+        }
+      });
+    },
+    [_id],
+  );
 
   return (
     <>

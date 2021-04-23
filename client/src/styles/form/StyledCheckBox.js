@@ -17,12 +17,12 @@ export const useStyles = makeStyles({
     },
     '&:hover': {
       '& span': {
-        color: '#3f51b5',
+        color: '#eb5650',
       },
     },
     '&:focus-within': {
       '& span': {
-        color: '#3f51b5',
+        color: '#eb5650',
       },
     },
   },
@@ -30,9 +30,9 @@ export const useStyles = makeStyles({
 
 const CheckboxStyles = withStyles({
   root: {
-    color: '#c1c8f0',
+    color: '#f2c4c2',
     '&$checked': {
-      color: '#3f51b5',
+      color: '#eb5650',
     },
   },
   checked: {},
