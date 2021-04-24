@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from 'modules/actions/user';
 import {
   ThemeProvider,
@@ -47,13 +47,16 @@ const StyledMenuItem = withStyles(theme => ({
 const AuthHeader = () => {
   const theme = createMuiTheme();
   const dispatch = useDispatch();
+
+  const profileData = useSelector(state => state.user.profile);
+  const [anchorEl, setAnchorEl] = useState(null);
+
   const onClickHandler = useCallback(() => {
     dispatch(logoutUser()).then(response => {
       console.log(response);
     });
   }, []);
 
-  const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = e => {
     e.preventDefault();
     if (!anchorEl) {
@@ -76,7 +79,7 @@ const AuthHeader = () => {
         variant="contained"
         onClick={handleClick}
       >
-        <UserAvatar width="32px" fontSize="14px" />
+        <UserAvatar width="32px" fontSize="14px" profileData={profileData} />
       </Button>
       <StyledMenu
         id="simple-menu"
@@ -104,7 +107,7 @@ const AuthHeader = () => {
   );
 };
 
-export default AuthHeader;
+export default withRouter(AuthHeader);
 
 const ContentBox = styled.div`
   background-color: ${({ theme }) => theme.contentBox};

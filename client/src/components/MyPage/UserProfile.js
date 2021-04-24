@@ -55,7 +55,7 @@ const EditForm = ({ profileData, readOnly }) => {
     <>
       <FormBox onSubmit={handleSubmit(onSubmit)}>
         <ColumnBox>
-          <UserAvatar />
+          <UserAvatar profileData={profileData} />
         </ColumnBox>
         <MarginBox margin="8px" />
         <InputBox>

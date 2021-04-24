@@ -6,15 +6,33 @@ const router = express.Router();
 //      Storage Multer Config
 //=================================
 
-let storage = multer.diskStorage({
+let profileStorage = multer.diskStorage({
  destination: (req, file, callback) => {
-   callback(null, "uploads/");
+   callback(null, "uploads/profile");
  },
  filename: (req, file, callback) => {
    callback(null, `${Date.now()}_${file.originalname}`);
  },
 });
-const upload = multer({ storage: storage }).single('uploadImage');
+
+let videoStorage = multer.diskStorage({
+  destination: (req, file, callback) => {
+      callback(null, 'uploads/video');
+  },
+  filename: (req, file, callback) => {
+      callback(null, `${Date.now()}_${file.originalname}`);
+  },
+  fileFilter: (req, file, callback) => {
+      const ext = path.extname(file.originalname);
+      if (ext !== ".mp4") {
+          return callback(res.status(400).end("mp4 파일만 업로드 가능합니다."), false);
+      }
+      callback(null, true);
+  }
+})
+
+const uploadProfile = multer({ storage: profileStorage }).single('uploadImage');
+const uploadVideo = multer({ storage: videoStorage }).single('file');
 
 //=================================
 //   	     uploadImage.js
@@ -22,7 +40,7 @@ const upload = multer({ storage: storage }).single('uploadImage');
 
 router.post('/', (req, res) => {
   console.log(req.body, req.file);
-  upload(req, res, err => {
+  uploadProfile(req, res, err => {
   console.log(req.body, req.file);
     if (err) {
       return res.status(404).json({ success: false, err });
