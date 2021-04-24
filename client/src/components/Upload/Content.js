@@ -10,10 +10,11 @@ import {
   InputBox,
   OutlinedInput,
   OutlinedTextArea,
+  AbsoluteButton,
 } from 'styles/form/styles';
 import { Backup } from '@material-ui/icons';
 import { useForm } from 'react-hook-form';
-import { ErrorMessage } from 'styles/typography/styles';
+import { ErrorMessage, SmallMessage } from 'styles/typography/styles';
 import { PrivateOptions, CategoryOptions } from './Options';
 
 const Content = ({ history }) => {
@@ -28,6 +29,7 @@ const Content = ({ history }) => {
   const userId = useSelector(state => state.user.profile._id);
 
   const [FilePath, setFilePath] = useState('');
+  const [FileName, setFileName] = useState('');
   const [FileDuration, setFileDuration] = useState(0);
   const [ThumbnailPath, setThumbnailPath] = useState('');
 
@@ -41,7 +43,22 @@ const Content = ({ history }) => {
     axios.post('/api/uploads/video', formData, config).then(response => {
       console.log(response.data);
       if (response.data.success) {
-        setFilePath(response.data.url);
+        setFilePath(response.data.filePath);
+        setFileName(response.data.fileName);
+        const videoData = {
+          filePath: response.data.filePath,
+          fileName: response.data.fileName,
+        };
+        axios.post('api/uploads/thumbnail', videoData).then(response => {
+          if (response.data.success) {
+            setFileDuration(response.data.fileDuration);
+            setThumbnailPath(response.data.filePath);
+          } else {
+            alert('썸네일 생성에 실패했습니다.');
+          }
+        });
+      } else {
+        alert('비디오 업로드에 실패했습니다');
       }
     });
   }, []);
@@ -56,21 +73,24 @@ const Content = ({ history }) => {
       <FormBox onSubmit={handleSubmit(onSubmitHandler)}>
         <Dropzone onDrop={onDrop} multiple={false} maxsize={1000000000}>
           {({ getRootProps, getInputProps }) => (
-            <Dropbox {...getRootProps()}>
-              <input {...getInputProps()} />
-              <Backup style={{ fontSize: 40 }} />
-              <p>Drag and drop</p>
-            </Dropbox>
+            <>
+              <Dropbox {...getRootProps()}>
+                <input {...getInputProps()} />
+                <Backup style={{ fontSize: 40 }} />
+                <p>Drag and drop</p>
+                {ThumbnailPath && (
+                  <ThumbnailBox>
+                    <img
+                      src={`http://localhost:5000/${ThumbnailPath}`}
+                      alt="thumbnail"
+                    />
+                  </ThumbnailBox>
+                )}
+              </Dropbox>
+              <SmallMessage>{FileName}</SmallMessage>
+            </>
           )}
         </Dropzone>
-        {ThumbnailPath && (
-          <div>
-            <img
-              src={`http://localhost:5000/${ThumbnailPath}`}
-              alt="thumbnail"
-            />
-          </div>
-        )}
         <InputBox>
           <label
             className={errors.videoTitle ? 'errorTypeLabel' : null}
@@ -138,6 +158,7 @@ const Content = ({ history }) => {
 export default Content;
 
 const Dropbox = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -150,6 +171,21 @@ const Dropbox = styled.div`
   & p {
     font-size: 16px;
     font-weight: 500;
+  }
+`;
+
+const ThumbnailBox = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  & img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
   }
 `;
 

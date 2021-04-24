@@ -1,5 +1,6 @@
 const express = require('express');
 const multer = require("multer");
+const ffmpeg = require('fluent-ffmpeg');
 const router = express.Router();
 
 //=================================
@@ -35,7 +36,7 @@ const uploadProfile = multer({ storage: profileStorage }).single('uploadImage');
 const uploadVideo = multer({ storage: videoStorage }).single('video');
 
 //=================================
-//   	     uploadImage.js
+//   	      uploadImage
 //=================================
 
 router.post('/', (req, res) => {
@@ -51,6 +52,10 @@ router.post('/', (req, res) => {
   })
 })
 
+//=================================
+//   	      uploadVideo
+//=================================
+
 router.post('/video', (req, res) => {
   uploadVideo(req, res, err => {
     if (err) {
@@ -63,6 +68,46 @@ router.post('/video', (req, res) => {
     });
   })
 })
+
+//=================================
+//   	       Thumbnail
+//=================================
+
+router.post('/thumbnail', (req, res) => {
+  let filePath = "";
+  let fileDuration = "";
+  console.log(req.body);
+  ffmpeg.ffprobe(req.body.filePath, function(err, metadata){
+    console.log(metadata);
+    console.log(metadata.format.duration);
+    fileDuration = metadata.format.duration;
+  })
+  ffmpeg(req.body.filePath)
+    .on('filenames', function(filenames) {
+      console.log("will generate" + filenames.join(','));
+      console.log(filenames);
+      filePath = "uploads/thumbnails/" + filenames[0]
+    })
+    .on('end', function() {
+      console.log("Screenshots taken");
+      return res.json({ 
+        success: true, 
+        filePath: filePath, 
+        fileDuration: fileDuration,
+      })
+    })
+    .on('error', function(err) {
+      console.log(err);
+      return res.json({ success: false, err});
+    })
+    .screenshots({
+      count: 1,
+      folder: 'uploads/thumbnails',
+      size: '320x180',
+      filename: 'thumbnail-%b.png'
+    })
+})
+
 
 
 module.exports = router;

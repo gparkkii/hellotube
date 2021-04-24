@@ -83,8 +83,8 @@ export const LinkFont = styled.a`
 
 export const SmallMessage = styled.div`
   width: 100%;
-  color: #757575;
-  font-size: 14px;
-  line-height: 24px;
-  margin-top: 24px;
+  color: #505050;
+  font-size: 15px;
+  text-align: center;
+  padding: 4px 0px;
 `;
