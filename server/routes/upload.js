@@ -1,6 +1,7 @@
 const express = require('express');
 const multer = require("multer");
 const ffmpeg = require('fluent-ffmpeg');
+const { Video } = require('../models/Video');
 const router = express.Router();
 
 //=================================
@@ -67,6 +68,14 @@ router.post('/video', (req, res) => {
       fileName: res.req.file.filename,
     });
   })
+})
+
+router.post('/video/files', (req, res) => {
+  const video = new Video(req.body);
+    video.save((err, doc) => {
+      if(err) return res.json({ success: false, err })
+      res.status(200).json({ success: true, doc })
+    })
 })
 
 //=================================

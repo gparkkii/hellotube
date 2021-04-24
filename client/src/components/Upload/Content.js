@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import axios from 'axios';
 import React, { useCallback, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Dropzone from 'react-dropzone';
 import styled from 'styled-components';
@@ -10,7 +11,6 @@ import {
   InputBox,
   OutlinedInput,
   OutlinedTextArea,
-  AbsoluteButton,
 } from 'styles/form/styles';
 import { Backup } from '@material-ui/icons';
 import { useForm } from 'react-hook-form';
@@ -65,6 +65,28 @@ const Content = ({ history }) => {
 
   const onSubmitHandler = useCallback(data => {
     console.log(data);
+    const files = {
+      writer: userId,
+      title: data.videoTitle,
+      description: data.videoDescription,
+      privacy: data.privacy,
+      category: data.category,
+      filePath: FilePath,
+      fileDuration: FileDuration,
+      thumbnail: ThumbnailPath,
+    };
+
+    console.log(files);
+
+    axios.post('/api/uploads/video/files', files).then(response => {
+      if (response.data.success) {
+        alert('업로드를 완료 했습니다.');
+        setTimeout(() => {}, 3000);
+        history.push('/');
+      } else {
+        alert('비디오 업로드에 실패했습니다.');
+      }
+    });
   }, []);
 
   return (
@@ -155,7 +177,7 @@ const Content = ({ history }) => {
   );
 };
 
-export default Content;
+export default withRouter(Content);
 
 const Dropbox = styled.div`
   position: relative;
