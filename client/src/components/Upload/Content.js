@@ -36,9 +36,9 @@ const Content = ({ history }) => {
     const config = {
       header: { 'content-type': 'multipart/form-data' },
     };
-    formData.append('file', files[0]);
+    formData.append('video', files[0]);
 
-    axios.post('/api/video/files', formData, config).then(response => {
+    axios.post('/api/uploads/video', formData, config).then(response => {
       console.log(response.data);
       if (response.data.success) {
         setFilePath(response.data.url);

@@ -32,16 +32,27 @@ let videoStorage = multer.diskStorage({
 })
 
 const uploadProfile = multer({ storage: profileStorage }).single('uploadImage');
-const uploadVideo = multer({ storage: videoStorage }).single('file');
+const uploadVideo = multer({ storage: videoStorage }).single('video');
 
 //=================================
 //   	     uploadImage.js
 //=================================
 
 router.post('/', (req, res) => {
-  console.log(req.body, req.file);
   uploadProfile(req, res, err => {
-  console.log(req.body, req.file);
+    if (err) {
+      return res.status(404).json({ success: false, err });
+    }
+    return res.status(200).json({
+      success: true,
+      filePath: res.req.file.path,
+      fileName: res.req.file.filename,
+    });
+  })
+})
+
+router.post('/video', (req, res) => {
+  uploadVideo(req, res, err => {
     if (err) {
       return res.status(404).json({ success: false, err });
     }
