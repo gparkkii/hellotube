@@ -5,6 +5,7 @@
 /bin/
 target/
 server/config/dev.js
+uploads/*
 
 # Dependencies
 node_modules

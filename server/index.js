@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const config = require('./config/key');
 const authRouter = require('./routes/auth');
 const uploadRouter = require('./routes/upload');
+const videoRouter = require('./routes/video');
 const userRouter = require('./routes/user/user');
 const signupRouter = require('./routes/user/signup');
 const loginRouter = require('./routes/user/login');
@@ -38,6 +39,7 @@ app.use('/user', userRouter);
 
 //============= API ==============//
 app.use('/auth', authRouter);
+app.use('/video', videoRouter);
 app.use('/uploads', uploadRouter);
 app.use('/uploads', express.static('uploads'))
 
