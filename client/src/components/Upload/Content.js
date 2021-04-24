@@ -43,16 +43,16 @@ const Content = ({ history }) => {
     axios.post('/api/uploads/video', formData, config).then(response => {
       console.log(response.data);
       if (response.data.success) {
-        setFilePath(response.data.filePath);
+        setFilePath(`http://localhost:5000/${response.data.filePath}`);
         setFileName(response.data.fileName);
         const videoData = {
           filePath: response.data.filePath,
           fileName: response.data.fileName,
         };
-        axios.post('api/uploads/thumbnail', videoData).then(response => {
-          if (response.data.success) {
-            setFileDuration(response.data.fileDuration);
-            setThumbnailPath(response.data.filePath);
+        axios.post('api/uploads/thumbnail', videoData).then(res => {
+          if (res.data.success) {
+            setFileDuration(res.data.fileDuration);
+            setThumbnailPath(`http://localhost:5000/${res.data.filePath}`);
           } else {
             alert('썸네일 생성에 실패했습니다.');
           }
@@ -63,31 +63,33 @@ const Content = ({ history }) => {
     });
   }, []);
 
-  const onSubmitHandler = useCallback(data => {
-    console.log(data);
-    const files = {
-      writer: userId,
-      title: data.videoTitle,
-      description: data.videoDescription,
-      privacy: data.privacy,
-      category: data.category,
-      filePath: FilePath,
-      fileDuration: FileDuration,
-      thumbnail: ThumbnailPath,
-    };
+  const onSubmitHandler = useCallback(
+    data => {
+      console.log(data);
+      const files = {
+        writer: userId,
+        title: data.videoTitle,
+        description: data.videoDescription,
+        privacy: data.privacy,
+        category: data.category,
+        filePath: FilePath,
+        fileDuration: FileDuration,
+        thumbnail: ThumbnailPath,
+      };
 
-    console.log(files);
+      console.log(files);
 
-    axios.post('/api/uploads/video/files', files).then(response => {
-      if (response.data.success) {
-        alert('업로드를 완료 했습니다.');
-        setTimeout(() => {}, 3000);
-        history.push('/');
-      } else {
-        alert('비디오 업로드에 실패했습니다.');
-      }
-    });
-  }, []);
+      axios.post('/api/uploads/video/files', files).then(response => {
+        if (response.data.success) {
+          alert('업로드를 완료 했습니다.');
+          history.push('/');
+        } else {
+          alert('비디오 업로드에 실패했습니다.');
+        }
+      });
+    },
+    [FileDuration, FilePath, ThumbnailPath, userId, history],
+  );
 
   return (
     <>
@@ -102,10 +104,7 @@ const Content = ({ history }) => {
                 <p>Drag and drop</p>
                 {ThumbnailPath && (
                   <ThumbnailBox>
-                    <img
-                      src={`http://localhost:5000/${ThumbnailPath}`}
-                      alt="thumbnail"
-                    />
+                    <img src={ThumbnailPath} alt="thumbnail" />
                   </ThumbnailBox>
                 )}
               </Dropbox>
@@ -155,7 +154,7 @@ const Content = ({ history }) => {
         <RowBox>
           <Label>※ 옵션을 선택해주세요 : </Label>
           <Label>공개 여부</Label>
-          <select {...register('private')} style={{ marginRight: '12px' }}>
+          <select {...register('privacy')} style={{ marginRight: '12px' }}>
             {PrivateOptions.map(item => (
               <option key={item.label} value={item.value}>
                 {item.label}

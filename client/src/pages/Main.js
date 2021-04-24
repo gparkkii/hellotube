@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import logo from 'assets/logo.png';
-
-import { FlexContainer } from 'styles/container/styles';
 import AppLayout from 'components/common/AppLayout';
 import Loading from 'components/common/Loading';
 import Content from 'components/Main/Content';

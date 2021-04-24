@@ -15,8 +15,8 @@ export const ColumnBox = styled.div`
 
 export const RowBox = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
 `;
 
