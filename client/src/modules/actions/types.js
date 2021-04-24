@@ -10,3 +10,6 @@ export const USER_FORM = 'user_form';
 export const PROFILE_FORM = 'profile_form';
 export const AVATAR_FORM = 'avatar_form';
 export const RESET_FORM = 'reset_form';
+
+/// ////////////// video //////////////////
+export const GET_VIDEOS = 'get_videos';

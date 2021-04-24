@@ -18,10 +18,10 @@ const initialState = {
     error: '',
   },
   profile: {
+    _id: '',
     name: '',
     email: '',
     password: '',
-    passwordConfirm: '',
     nickname: '',
     userDescription: '',
     url: '',
