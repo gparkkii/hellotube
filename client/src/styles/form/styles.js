@@ -52,7 +52,7 @@ export const InputBox = styled.div`
   & label {
     font-size: 12px;
     margin-bottom: 4px;
-    margin-left: 12px;
+    margin-left: 8px;
     color: ${({ theme }) => theme.textColor};
   }
   &: focus-within {
@@ -194,6 +194,23 @@ export const StyledTextArea = styled.textarea`
       background-color: ${({ theme }) => theme.contentBox};
       border: ${({ theme }) => theme.borderColor};
     `}
+`;
+
+export const OutlinedTextArea = styled.textarea`
+  width: 100%;
+  height: 100px;
+  padding: 16px 14px;
+  border-radius: 8px;
+  color: ${({ theme }) => theme.textColor};
+  border: 1px solid #f2c4c2;
+  background-color: transparent;
+  &:hover {
+    border: 1px solid #eb5650;
+  }
+  &:focus {
+    border: 1px solid #eb5650;
+    box-shadow: inset 0 0 0 1px #eb5650;
+  }
 `;
 
 export const SocialLogin = styled.div`

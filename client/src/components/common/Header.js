@@ -78,12 +78,13 @@ const StyledHeader = styled.header`
         margin: 0px 8px;
       }
       & p {
-        font-size: 18px;
+        font-size: 20px;
+        line-height: 60px;
         font-weight: 600;
         color: #f02330;
       }
       & img {
-        width: 30px;
+        width: 32px;
         margin-right: 4px;
       }
     }

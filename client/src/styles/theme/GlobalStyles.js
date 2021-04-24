@@ -13,7 +13,6 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1.5;
     margin: 0 auto;
     font-family:
-      "Open Sans",
       "Assistant",
       "Helvetica Neue",
       "Noto Sans",

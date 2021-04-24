@@ -15,7 +15,7 @@ import UserAvatar from './UserAvatar';
 const StyledMenu = withStyles({
   paper: {
     backgroundColor: 'transparent',
-    marginTop: '2px',
+    marginTop: '5px',
   },
 })(props => (
   <Menu
