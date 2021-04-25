@@ -1,4 +1,5 @@
 /* eslint-disable no-underscore-dangle */
+import UpdateTime from 'library/UpdateTime';
 import React from 'react';
 import styled from 'styled-components';
 import UserAvatar from '../common/UserAvatar';
@@ -34,7 +35,10 @@ const VideoCard = ({ video }) => {
             <p>{video.writer.nickname}</p>
             <div>
               <p>조회수 {video.views}회 </p>
-              <p> ･ 3일전</p>
+              <p>
+                {' '}
+                ･ <UpdateTime time={video.updatedAt} />
+              </p>
             </div>
           </InfoBox>
         </TitleBox>
