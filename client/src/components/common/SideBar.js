@@ -18,17 +18,18 @@ const SideBar = () => {
   const [isOpen, setisOpen] = useState(false);
   return (
     <SideMenu>
-      <IconButton aria-label="side-menu">
-        <Menu
-          onClick={e => {
-            e.preventDefault();
-            setisOpen(!isOpen);
-          }}
-        />
+      <IconButton
+        aria-label="side-menu"
+        onClick={e => {
+          e.preventDefault();
+          setisOpen(!isOpen);
+        }}
+      >
+        <Menu />
       </IconButton>
       <BarMenu isOpen={isOpen}>
         <List isOpen={isOpen}>
-          <NavLink exact path to="/" activeClassName="side-active">
+          <NavLink exact to="/" activeClassName="side-active">
             <Home />
             <span>홈</span>
           </NavLink>

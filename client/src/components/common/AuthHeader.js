@@ -2,14 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from 'modules/actions/user';
-import {
-  ThemeProvider,
-  unstable_createMuiStrictModeTheme as createMuiTheme,
-  Menu,
-  MenuItem,
-  IconButton,
-  Tooltip,
-} from '@material-ui/core';
+import { Menu, MenuItem, IconButton } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
 import UserAvatar from './UserAvatar';
@@ -47,7 +40,6 @@ const StyledMenuItem = withStyles(theme => ({
 }))(MenuItem);
 
 const AuthHeader = () => {
-  const theme = createMuiTheme();
   const dispatch = useDispatch();
 
   const profileData = useSelector(state => state.user.profile);
@@ -73,18 +65,16 @@ const AuthHeader = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Tooltip title="내 프로필">
-        <IconButton
-          type="button"
-          aria-controls="simple-menu"
-          aria-haspopup="true"
-          variant="contained"
-          onClick={handleClick}
-        >
-          <UserAvatar width="32px" fontSize="14px" profileData={profileData} />
-        </IconButton>
-      </Tooltip>
+    <>
+      <IconButton
+        type="button"
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        variant="contained"
+        onClick={handleClick}
+      >
+        <UserAvatar width="32px" fontSize="14px" profileData={profileData} />
+      </IconButton>
       <StyledMenu
         id="simple-menu"
         anchorEl={anchorEl}
@@ -107,7 +97,7 @@ const AuthHeader = () => {
           </StyledMenuItem>
         </ContentBox>
       </StyledMenu>
-    </ThemeProvider>
+    </>
   );
 };
 
