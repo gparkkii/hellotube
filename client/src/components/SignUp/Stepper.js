@@ -104,11 +104,8 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.contentBox};
   box-shadow: ${({ theme }) => theme.boxShadow};
   transition: all 0.2s ease;
-  ${media.tablet`
-    width: 26em;
-  `}
   ${media.mini`
-    width: 22em;
+    width: 26em;
   `}
   ${media.mobile`
     width: 20em;        

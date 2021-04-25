@@ -1,6 +1,8 @@
 export const lightTheme = {
-  bgColor: '#FDFAFA',
+  bgColor: '#FCF9F9',
   textColor: '#4a4a4a',
+  iconColor: '#757575',
+  headerColor: '#fff',
   borderColor: '1px solid #eaeaea',
   inputFilled: '#ECECF2',
   contentBox: '#fff',
@@ -8,8 +10,10 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
-  bgColor: '#222529',
+  bgColor: '#1E1F22',
   textColor: '#eaeaea',
+  iconColor: '#eee',
+  headerColor: '#222529',
   borderColor: '1px solid #3c3f43',
   inputFilled: '#3c3f43',
   contentBox: '#2B2E32',

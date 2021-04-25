@@ -36,7 +36,7 @@ export const FormBox = styled.form`
     width: 24em;     
   `}
   ${media.mobile`
-    width: 18em;     
+    width: 20em;     
   `}
 `;
 

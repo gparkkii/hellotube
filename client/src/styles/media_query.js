@@ -2,17 +2,17 @@ import { css } from 'styled-components';
 
 export const media = {
   mobile: (...args) => css`
-    @media (max-width: 360px) {
+    @media (max-width: 385px) {
       ${css(...args)}
     }
   `,
   mini: (...args) => css`
-    @media (max-width: 450px) {
+    @media (max-width: 680px) {
       ${css(...args)}
     }
   `,
   tablet: (...args) => css`
-    @media (max-width: 800px) {
+    @media (max-width: 1024px) {
       ${css(...args)}
     }
   `,

@@ -117,6 +117,10 @@ html, #root {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 } 
 
+.header-active > button > span {
+  color: #db2b25;
+}
+
 .focusedLabel {
   border: 1px solid #eb5650 !important;
   color: #eb5650;

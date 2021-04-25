@@ -17,5 +17,6 @@ const ThemeButton = styled.button`
   border: 1px solid ${({ theme }) => theme.textColor};
   border-radius: 30px;
   font-size: 15px;
+  margin-left: 4px;
   color: ${({ theme }) => theme.textColor};
 `;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AppLayout from 'components/common/AppLayout';
 import Loading from 'components/common/Loading';
 import Content from 'components/Main/Content';
+import { MarginBox } from 'styles/form/styles';
 
 const Main = () => {
   const [loading, setLoading] = useState(true);
@@ -16,7 +17,9 @@ const Main = () => {
         <Loading />
       ) : (
         <AppLayout>
-          <Content />
+          <MarginBox margin="20px">
+            <Content />
+          </MarginBox>
         </AppLayout>
       )}
     </>

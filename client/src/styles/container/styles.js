@@ -6,6 +6,7 @@ export const WrapContainer = styled.main`
   position: relative;
   padding-top: 60px;
   padding-bottom: 80px;
+  padding-left: 72px;
 `;
 
 export const MainContainer = styled.div`
@@ -60,7 +61,6 @@ export const GridContainer = styled.div`
   ${media.desktop`
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(3,1fr);
-    gap: 28px;
   `}
   ${media.tablet`
     grid-template-columns: repeat(2,1fr);

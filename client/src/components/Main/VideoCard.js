@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import UpdateTime from 'library/UpdateTime';
+import UpdateTime from 'library/utils/UpdateTime';
 import React from 'react';
 import styled from 'styled-components';
 import UserAvatar from '../common/UserAvatar';

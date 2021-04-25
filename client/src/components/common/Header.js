@@ -1,12 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useTheme } from 'context/themeProvider';
+import { AddAPhoto, AllInbox, Search } from '@material-ui/icons';
+import { IconButton, Tooltip } from '@material-ui/core';
 import styled from 'styled-components';
 import logo from 'assets/logo.png';
-import { AddAPhoto, AllInbox, Search } from '@material-ui/icons';
 import ThemeToggle from './ThemeToggle';
 import AuthHeader from './AuthHeader';
+import SideBar from './SideBar';
 
 const Header = () => {
   const isAuth = useSelector(state => state.user.data.isAuth);
@@ -15,29 +17,38 @@ const Header = () => {
   return (
     <StyledHeader>
       <nav>
-        <Link to="/">
+        <SideBar />
+        <NavLink to="/">
           <img src={logo} alt="logo" />
           <p>HelloTube</p>
-        </Link>
+        </NavLink>
       </nav>
       <nav>
         {!isAuth && (
           <>
-            <Link to="/login">로그인</Link>
-            <Link to="/signup">회원가입</Link>
+            <NavLink to="/login">로그인</NavLink>
+            <NavLink to="/signup">회원가입</NavLink>
           </>
         )}
         {isAuth && (
           <>
-            <span>
-              <Search style={{ fontSize: 24 }} />
-            </span>
-            <span>
-              <AllInbox style={{ fontSize: 24 }} />
-            </span>
-            <Link to="/upload">
-              <AddAPhoto style={{ fontSize: 23.5 }} />
-            </Link>
+            <Tooltip title="검색">
+              <IconButton aria-label="search">
+                <Search style={{ fontSize: 24 }} />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="내 동영상">
+              <IconButton aria-label="bookmark">
+                <AllInbox style={{ fontSize: 24 }} />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="동영상 업로드">
+              <NavLink to="/upload" activeClassName="header-active">
+                <IconButton aria-label="upload">
+                  <AddAPhoto style={{ fontSize: 23.5 }} />
+                </IconButton>
+              </NavLink>
+            </Tooltip>
             <AuthHeader />
           </>
         )}
@@ -62,7 +73,7 @@ const StyledHeader = styled.header`
   font-size: 15px;
   font-weight: 500;
   padding: 0px 24px;
-  border-bottom: ${({ theme }) => theme.borderColor};
+  background-color: ${({ theme }) => theme.headerColor};
   & nav {
     display: flex;
     flex-direction: row;
@@ -71,7 +82,6 @@ const StyledHeader = styled.header`
       display: flex;
       flex-direction: row;
       align-items: center;
-      margin-right: 20px;
       & h2 {
         font-size: 28px;
         font-weight: 600;
@@ -88,8 +98,8 @@ const StyledHeader = styled.header`
         margin-right: 4px;
       }
     }
-    & span {
-      margin-right: 20px;
+    & button {
+      color: ${({ theme }) => theme.textColor};
       & svg {
         vertical-align: middle;
       }

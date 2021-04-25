@@ -7,6 +7,8 @@ import {
   unstable_createMuiStrictModeTheme as createMuiTheme,
   Menu,
   MenuItem,
+  IconButton,
+  Tooltip,
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
@@ -15,7 +17,7 @@ import UserAvatar from './UserAvatar';
 const StyledMenu = withStyles({
   paper: {
     backgroundColor: 'transparent',
-    marginTop: '5px',
+    marginTop: '-6px',
   },
 })(props => (
   <Menu
@@ -72,15 +74,17 @@ const AuthHeader = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Button
-        type="button"
-        aria-controls="simple-menu"
-        aria-haspopup="true"
-        variant="contained"
-        onClick={handleClick}
-      >
-        <UserAvatar width="32px" fontSize="14px" profileData={profileData} />
-      </Button>
+      <Tooltip title="내 프로필">
+        <IconButton
+          type="button"
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          variant="contained"
+          onClick={handleClick}
+        >
+          <UserAvatar width="32px" fontSize="14px" profileData={profileData} />
+        </IconButton>
+      </Tooltip>
       <StyledMenu
         id="simple-menu"
         anchorEl={anchorEl}
@@ -116,16 +120,11 @@ const ContentBox = styled.div`
   & li {
     height: 48px;
     padding: 10px;
-    border-top: ${({ theme }) => theme.borderColor};
+    border-bottom: ${({ theme }) => theme.borderColor};
     & a {
       & button {
         font-size: 15px;
       }
     }
   }
-`;
-
-const Button = styled.button`
-  margin-right: 16px;
-  padding: 0px;
 `;
