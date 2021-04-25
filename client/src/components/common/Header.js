@@ -50,7 +50,7 @@ const Header = () => {
                 </IconButton>
               </Tooltip>
               <Tooltip title="동영상 업로드">
-                <NavLink to="/upload" activeClassName="header-active">
+                <NavLink to="video/upload" activeClassName="header-active">
                   <IconButton aria-label="upload">
                     <AddAPhoto style={{ fontSize: 23.5 }} />
                   </IconButton>

@@ -53,7 +53,7 @@ const SideBar = () => {
           </NavLink>
         </List>
         <List isOpen={isOpen}>
-          <NavLink to="/upload" activeClassName="side-active">
+          <NavLink to="video/upload" activeClassName="side-active">
             <AddAPhoto />
             <span>동영상 업로드</span>
           </NavLink>

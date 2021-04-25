@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { GridContainer } from 'styles/container/styles';
 import { getAllVideos } from 'modules/actions/video';
 import VideoCard from './VideoCard';
@@ -25,4 +26,4 @@ const Content = () => {
   );
 };
 
-export default Content;
+export default withRouter(Content);

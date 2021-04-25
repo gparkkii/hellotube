@@ -1,7 +1,8 @@
 /* eslint-disable no-underscore-dangle */
-import UpdateTime from 'library/utils/UpdateTime';
 import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
+import UpdateTime from 'library/utils/UpdateTime';
 import UserAvatar from '../common/UserAvatar';
 
 const VideoCard = ({ video }) => {
@@ -10,7 +11,7 @@ const VideoCard = ({ video }) => {
 
   return (
     <>
-      <a href={`/video/${video._id}`}>
+      <Link to={`/video/${video._id}`}>
         <ImgBox>
           <img src={video.thumbnail} alt={video.thumbnail} />
           <Duration>
@@ -42,12 +43,12 @@ const VideoCard = ({ video }) => {
             </div>
           </InfoBox>
         </TitleBox>
-      </a>
+      </Link>
     </>
   );
 };
 
-export default VideoCard;
+export default withRouter(VideoCard);
 
 const ImgBox = styled.div`
   position: relative;

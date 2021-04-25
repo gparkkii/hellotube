@@ -71,3 +71,9 @@ export const GridContainer = styled.div`
     grid-template-rows: repeat(1,1fr);
   `}
 `;
+
+export const SideContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+`;

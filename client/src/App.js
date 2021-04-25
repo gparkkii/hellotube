@@ -30,8 +30,8 @@ function App() {
             <Route path="/login" component={Auth(Login, false)} />
             <Route path="/signup" component={Auth(SignUp, false)} />
             <Route path="/mypage" component={Auth(MyPage, true)} />
-            <Route path="/upload" component={Auth(Upload, true)} />
-            <Route path="/video/:videoId" component={Auth(Detail, null)} />
+            <Route path="/video/upload" component={Auth(Upload, true)} />
+            <Route path="/video/:id" component={Auth(Detail, null)} />
           </Switch>
         </ThemeLayout>
       </Suspense>
