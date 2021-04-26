@@ -1,5 +1,8 @@
+/* eslint-disable no-underscore-dangle */
+import axios from 'axios';
 import React, { useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { saveComments } from 'modules/actions/video';
 import { useForm } from 'react-hook-form';
 import { Create } from '@material-ui/icons';
 import { Tooltip, IconButton } from '@material-ui/core';
@@ -8,7 +11,7 @@ import styled from 'styled-components';
 import UserAvatar from 'components/common/UserAvatar';
 import CommentCard from './CommentCard';
 
-const Comment = () => {
+const Comment = ({ Video }) => {
   const {
     register,
     handleSubmit,
@@ -17,12 +20,22 @@ const Comment = () => {
     mode: 'onTouched',
   });
 
-  const Comments = useSelector(state => state.video.Comments);
+  const dispatch = useDispatch();
+  const Comments = useSelector(state => state.video.comments);
   const userData = useSelector(state => state.user.profile);
 
-  const onSubmit = useCallback(data => {
-    console.log(data);
-  }, []);
+  const onSubmit = useCallback(
+    data => {
+      const variables = {
+        content: data.comment,
+        writer: userData._id,
+        videoId: Video._id,
+        commentTo: Video.writer._id,
+      };
+      dispatch(saveComments(variables));
+    },
+    [userData, Video, Comments],
+  );
 
   return (
     <CommentBox>
@@ -50,7 +63,10 @@ const Comment = () => {
         </CommentForm>
       )}
       {errors.comment && <ErrorMessage>{errors.comment.message}</ErrorMessage>}
-      {Comments && <CommentCard />}
+      {Comments.length > 0 &&
+        Comments.map(comment => {
+          return <CommentCard key={comment._id} comment={comment} />;
+        })}
     </CommentBox>
   );
 };
@@ -60,8 +76,10 @@ export default Comment;
 const CommentBox = styled.div`
   width: 100%;
   margin-top: 20px;
-  padding: 20px 0px;
+  padding-top: 20px;
+  padding-bottom: 40px;
   border-top: ${({ theme }) => theme.borderColor};
+  border-bottom: ${({ theme }) => theme.borderColor};
   & h2 {
     font-size: 15px;
     font-weight: 500;
@@ -77,7 +95,7 @@ const CommentForm = styled.form`
   padding: 15px 0px;
   margin-left: 10px;
   & textarea {
-    width: calc(100% - 120px);
+    width: calc(100% - 112px);
     height: 30px;
     padding: 0px 14px;
     margin-left: 14px;

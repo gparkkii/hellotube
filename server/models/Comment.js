@@ -10,13 +10,13 @@ const commentSchema = mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: 'Video',
   },
-  videoUser: {
+  commentTo: {
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
   content: {
     type: String,
-  }
+  },
 },{timestamps: true})
 
 const Comment = mongoose.model('Comment', commentSchema);

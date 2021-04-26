@@ -18,3 +18,4 @@ export const GET_LIKES = 'get_likes';
 export const GET_SUBSCRIBE = 'get_subscribe';
 
 export const GET_VIDEOS_DETAIL = 'get_videos_detail';
+export const SAVE_COMMENTS = 'save_comments';

@@ -5,6 +5,7 @@ import {
   GET_COMMENTS,
   GET_SUBSCRIBE,
   GET_VIDEOS_DETAIL,
+  SAVE_COMMENTS,
 } from './types';
 
 /// ////////////// video //////////////////
@@ -33,6 +34,16 @@ export function getAllComments(dataToSubmit) {
     .then(response => response.data);
   return {
     type: GET_COMMENTS,
+    payload: request,
+  };
+}
+
+export function saveComments(dataToSubmit) {
+  const request = axios
+    .post(`api/comment/save`, dataToSubmit)
+    .then(response => response.data);
+  return {
+    type: SAVE_COMMENTS,
     payload: request,
   };
 }

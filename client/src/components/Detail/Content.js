@@ -47,7 +47,7 @@ const Content = ({ videoId }) => {
         <strong>{Video.title}</strong>
         <Like Video={Video} />
         <Subscribe Video={Video} />
-        <Comment />
+        <Comment Video={Video} />
       </SideContainer>
       <div>side menu</div>
     </VideoBox>
