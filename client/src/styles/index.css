@@ -136,6 +136,14 @@ html, #root {
   box-shadow: inset 0 0 0 0.5px #de506b !important;
 }
 
+.errorUnderline {
+  border-bottom: 1px solid #de506b !important;
+}
+
+.errorUnderline:focus {
+  border-bottom: 2px solid #de506b !important;
+}
+
 .errorTypeLabel {
   color: #de506b !important;
 }

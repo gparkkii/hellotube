@@ -1,13 +1,12 @@
 /* eslint-disable jsx-a11y/media-has-caption */
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
-import styled, { css } from 'styled-components';
-import UpdateTime from 'library/utils/UpdateTime';
 import { SideContainer } from 'styles/container/styles';
-import { IconButton } from '@material-ui/core';
-import { ThumbUp, ThumbDown, PermMedia } from '@material-ui/icons';
-import UserAvatar from 'components/common/UserAvatar';
+import styled from 'styled-components';
+import Comment from './Comment';
+import Subscribe from './Subscribe';
+import Like from './Like';
 
 const Content = ({ videoId }) => {
   const [Video, setVideo] = useState('');
@@ -49,43 +48,9 @@ const Content = ({ videoId }) => {
           />
         </video>
         <strong>{Video.title}</strong>
-        <InfoBox>
-          <span>
-            <p>조회수 {Video.views}회 </p>
-            <p>
-              {' '}
-              ･ <UpdateTime time={Video.updatedAt} />
-            </p>
-          </span>
-          <span>
-            <IconButton>
-              <ThumbUp />
-              좋아요
-            </IconButton>
-            <IconButton>
-              <ThumbDown />
-              싫어요
-            </IconButton>
-            <IconButton>
-              <PermMedia />
-              저장
-            </IconButton>
-          </span>
-        </InfoBox>
-        <div>
-          <AvatarBox subscribed>
-            <div>
-              <UserAvatar
-                profileData={Video.writer}
-                width="40px"
-                fontSize="14px"
-              />
-              <p>{Video.writer?.nickname}</p>
-            </div>
-            <button type="button">구독중</button>
-          </AvatarBox>
-          <Description>{Video.description}</Description>
-        </div>
+        <Like Video={Video} />
+        <Subscribe Video={Video} />
+        <Comment />
       </SideContainer>
       <div>side menu</div>
     </VideoBox>
@@ -111,72 +76,4 @@ const VideoBox = styled.div`
   & p {
     margin-left: 8px;
   }
-`;
-
-const InfoBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 14px;
-  font-weight: 500;
-  padding-bottom: 8px;
-  color: ${({ theme }) => theme.iconColor};
-  border-bottom: ${({ theme }) => theme.borderColor};
-  & span {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    & button {
-      font-size: 14px;
-      color: ${({ theme }) => theme.iconColor};
-      & svg {
-        font-size: 20px;
-        margin-right: 8px;
-      }
-    }
-  }
-`;
-
-const AvatarBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0px 8px;
-  padding-top: 20px;
-  & div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  & p {
-    font-size: 14px;
-    font-weight: 500;
-    color: #4b7ac7;
-  }
-  & button {
-    width: 72px;
-    height: 40px;
-    border-radius: 4px;
-    font-size: 13px;
-    background-color: #db2b25;
-    color: #fff;
-  }
-  ${props =>
-    props.subscribed &&
-    css`
-      & button {
-        color: ${({ theme }) => theme.iconColor};
-        background-color: ${({ theme }) => theme.buttonColor};
-      }
-    `}
-`;
-
-const Description = styled.div`
-  margin-left: 54px;
-  font-size: 14px;
-  margin-top: 4px;
-  color: ${({ theme }) => theme.textColor};
 `;
