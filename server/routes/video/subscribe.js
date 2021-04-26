@@ -19,9 +19,9 @@ router.post('/files', (req, res) => {
 
       Video.find({writer: {$in: subscribedUser}})
         .populate('writer')
-        .exec((err, subscribe) => {
+        .exec((err, videos) => {
           if(err) return res.status(400).send(err);
-          return res.status(200).json({ success: true, subscribe });
+          return res.status(200).json({ success: true, videos });
         })
     })
 })
