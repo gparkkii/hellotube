@@ -16,7 +16,7 @@ const Content = () => {
   return (
     <>
       <GridContainer>
-        {Video.getVideoSuccess &&
+        {Video.getVideoDone &&
           Video.videos.map(video => {
             return <VideoCard key={video._id} video={video} />;
           })}

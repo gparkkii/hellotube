@@ -14,12 +14,14 @@ const initialState = {
   saveCommentLoading: false,
   saveCommentDone: false,
   saveCommentError: false,
-  comments: {
-    writer: {},
-    videoId: {},
-    commentTo: {},
-    content: '',
-  },
+  comments: [
+    {
+      writer: {},
+      videoId: {},
+      commentTo: {},
+      content: '',
+    },
+  ],
 };
 
 /// ////////////// comment //////////////////
@@ -48,7 +50,7 @@ export default function commentReducer(prevState = initialState, action) {
       case GET_COMMENTS_SUCCESS:
         draft.getCommentLoading = false;
         draft.getCommentDone = true;
-        draft.comments = action.payload;
+        draft.comments = action.payload.comments;
         break;
       case GET_COMMENTS_FAILURE:
         draft.getCommentLoading = false;
@@ -63,7 +65,7 @@ export default function commentReducer(prevState = initialState, action) {
       case SAVE_COMMENTS_SUCCESS:
         draft.saveCommentLoading = false;
         draft.saveCommentDone = true;
-        draft.comments = action.payload;
+        draft.comments.push(action.payload.result[0]);
         break;
       case SAVE_COMMENTS_FAILURE:
         draft.saveCommentLoading = false;

@@ -10,13 +10,15 @@ import {
   SAVE_COMMENTS_FAILURE,
 } from '../reducers/comment';
 
-function getCommentAPI() {
-  return axios.get('/api/comment/files').then(response => ({ response }));
+function getCommentAPI(data) {
+  return axios
+    .post('/api/comment/files', { videoId: data })
+    .then(response => ({ response }));
 }
 
-function* getComments() {
+function* getComments(action) {
   try {
-    const { response } = yield call(getCommentAPI);
+    const { response } = yield call(getCommentAPI, action.data);
     if (response.data.success) {
       yield put({
         type: GET_COMMENTS_SUCCESS,
@@ -33,7 +35,7 @@ function* getComments() {
 }
 
 function saveCommentAPI(data) {
-  return axios.post('api/comment/save', data).then(response => ({ response }));
+  return axios.post('/api/comment/save', data).then(response => ({ response }));
 }
 
 function* saveComment(action) {
@@ -61,6 +63,6 @@ function* watchSaveComment() {
   yield takeLatest(SAVE_COMMENTS_REQUEST, saveComment);
 }
 
-export default function* userSaga() {
+export default function* commentSaga() {
   yield all([fork(watchAllComments), fork(watchSaveComment)]);
 }

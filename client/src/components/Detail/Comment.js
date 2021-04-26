@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveComments } from 'modules/reducers/comment';
+import { getAllComments, saveComments } from 'modules/reducers/comment';
 import { useForm } from 'react-hook-form';
 import { Create } from '@material-ui/icons';
 import { Tooltip, IconButton } from '@material-ui/core';
@@ -13,14 +13,21 @@ const Comment = ({ Video }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     mode: 'onTouched',
   });
 
   const dispatch = useDispatch();
-  const Comments = useSelector(state => state.video.comments);
+  const status = useSelector(state => state.comment);
+  const Comments = useSelector(state => state.comment.comments);
   const userData = useSelector(state => state.user.profile);
+
+  useEffect(() => {
+    dispatch(getAllComments(Video._id));
+    reset();
+  }, []);
 
   const onSubmit = useCallback(
     data => {
@@ -37,7 +44,7 @@ const Comment = ({ Video }) => {
 
   return (
     <CommentBox>
-      <h2>댓글 {Comments ? Comments.length : 0}개</h2>
+      <h2>댓글 {(status.getCommentDone && Comments.length) || 0}개</h2>
       {userData && (
         <CommentForm onSubmit={handleSubmit(onSubmit)}>
           <UserAvatar profileData={userData} width="40px" fontSize="14px" />
@@ -61,8 +68,8 @@ const Comment = ({ Video }) => {
         </CommentForm>
       )}
       {errors.comment && <ErrorMessage>{errors.comment.message}</ErrorMessage>}
-      {Comments.length > 0 &&
-        Comments.map(comment => {
+      {status.getCommentDone &&
+        Comments?.map(comment => {
           return <CommentCard key={comment._id} comment={comment} />;
         })}
     </CommentBox>

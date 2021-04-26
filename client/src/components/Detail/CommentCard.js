@@ -6,7 +6,6 @@ import { IconButton, Tooltip } from '@material-ui/core';
 import { ThumbUp, ThumbDown } from '@material-ui/icons';
 
 const CommentCard = ({ comment }) => {
-  console.log(comment);
   return (
     <CardBox>
       <UserAvatar profileData={comment.writer} width="40px" fontSize="14px" />

@@ -56,7 +56,7 @@ export default function videoReducer(prevState = initialState, action) {
       case GET_VIDEOS_SUCCESS:
         draft.getVideoLoading = false;
         draft.getVideoDone = true;
-        draft.videos = action.payload;
+        draft.videos = action.payload.videos;
         break;
       case GET_VIDEOS_FAILURE:
         draft.getVideoLoading = false;
@@ -71,7 +71,7 @@ export default function videoReducer(prevState = initialState, action) {
       case CURRENT_VIDEO_SUCCESS:
         draft.currentVideoLoading = false;
         draft.currentVideoDone = true;
-        draft.currentVideo = action.payload;
+        draft.currentVideo = action.payload.video;
         break;
       case CURRENT_VIDEO_FAILURE:
         draft.currentVideoLoading = false;

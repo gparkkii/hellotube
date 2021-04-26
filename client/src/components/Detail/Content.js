@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDetailVideos } from 'modules/reducers/video';
-import { getAllComments } from 'modules/reducers/comment';
+import { getCurrentVideos } from 'modules/reducers/video';
 import { SideContainer } from 'styles/container/styles';
 import styled from 'styled-components';
 import Comment from './Comment';
@@ -11,31 +10,35 @@ import Like from './Like';
 
 const Content = ({ videoId }) => {
   const dispatch = useDispatch();
+  const status = useSelector(state => state.video);
   const Video = useSelector(state => state.video.currentVideo);
 
   useEffect(() => {
-    dispatch(getDetailVideos({ videoId }));
-    dispatch(getAllComments({ videoId }));
+    dispatch(getCurrentVideos({ videoId }));
   }, []);
 
   return (
     <VideoBox>
       <SideContainer>
-        <video
-          controls
-          autoPlay
-          loop
-          controlsList="nodownload"
-          src={Video.filePath}
-          style={{ width: '100%' }}
-          alt={Video.title}
-        >
-          <track kind="captions" />
-        </video>
-        <strong>{Video.title}</strong>
-        <Like Video={Video} />
-        <Subscribe Video={Video} />
-        <Comment Video={Video} />
+        {status.currentVideoDone && (
+          <>
+            <video
+              controls
+              autoPlay
+              loop
+              controlsList="nodownload"
+              src={Video.filePath}
+              style={{ width: '100%' }}
+              alt={Video.title}
+            >
+              <track kind="captions" />
+            </video>
+            <strong>{Video.title}</strong>
+            <Like Video={Video} />
+            <Subscribe Video={Video} />
+            <Comment Video={Video} />
+          </>
+        )}
       </SideContainer>
       <div>side menu</div>
     </VideoBox>

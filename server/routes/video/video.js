@@ -23,7 +23,6 @@ router.post('/detail', (req, res) => {
   Video.findOne({ "_id" : req.body.videoId })
     .populate('writer')
     .exec((err, video) => {
-      console.log(video);
       if(err) return res.status(400).send(err)
       return res.status(200).json({ success: true, video })
     })

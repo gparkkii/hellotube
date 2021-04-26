@@ -15,6 +15,7 @@ function getVideoAPI() {
 }
 
 function* getVideos() {
+  console.log('saga logIn');
   try {
     const { response } = yield call(getVideoAPI);
     if (response.data.success) {
@@ -33,7 +34,7 @@ function* getVideos() {
 }
 
 function currentVideoAPI(data) {
-  return axios.post('api/video/detail', data).then(response => ({ response }));
+  return axios.post('/api/video/detail', data).then(response => ({ response }));
 }
 
 function* currentVideo(action) {
@@ -61,6 +62,6 @@ function* watchCurrentVideo() {
   yield takeLatest(CURRENT_VIDEO_REQUEST, currentVideo);
 }
 
-export default function* userSaga() {
+export default function* videoSaga() {
   yield all([fork(watchAllVideos), fork(watchCurrentVideo)]);
 }
