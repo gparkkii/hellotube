@@ -5,11 +5,15 @@ const mongoose = require('mongoose');
 const config = require('./config/key');
 const authRouter = require('./routes/auth');
 const uploadRouter = require('./routes/upload');
-const videoRouter = require('./routes/video');
 const userRouter = require('./routes/user/user');
 const signupRouter = require('./routes/user/signup');
 const loginRouter = require('./routes/user/login');
 const logoutRouter = require('./routes/user/logout');
+const videoRouter = require('./routes/video/video');
+const likeRouter = require('./routes/video/like');
+const commentRouter = require('./routes/video/comment');
+const subscribeRouter = require('./routes/video/subscribe');
+
 const app = express();
 
 mongoose.connect( config.mongoURI, 
@@ -37,11 +41,17 @@ app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/user', userRouter);
 
+//============ VIDEO =============//
+app.use('/video', videoRouter);
+app.use('/like', likeRouter);
+app.use('/comment', commentRouter);
+app.use('/subscribe', subscribeRouter);
+
 //============= API ==============//
 app.use('/auth', authRouter);
-app.use('/video', videoRouter);
 app.use('/uploads', uploadRouter);
-app.use('/uploads', express.static('uploads'))
+app.use('/uploads', express.static('uploads'));
+
 
 const port = 5000;
 
