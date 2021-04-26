@@ -27,6 +27,7 @@ const initialState = {
     url: '',
     profileImage: '',
     profileImageType: '',
+    hashedEmail: '',
   },
 };
 

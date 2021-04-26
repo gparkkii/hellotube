@@ -9,7 +9,7 @@ import {
   AllInbox,
   AddAPhoto,
   PermMedia,
-  Favorite,
+  ThumbUp,
   Message,
 } from '@material-ui/icons';
 import { IconButton } from '@material-ui/core';
@@ -66,7 +66,7 @@ const SideBar = () => {
         </List>
         <List isOpen={isOpen}>
           <NavLink to="/myfavorite" activeClassName="side-active">
-            <Favorite />
+            <ThumbUp />
             <span>내가 찜한 동영상</span>
           </NavLink>
         </List>
@@ -98,7 +98,7 @@ const BarMenu = styled.div`
   left: 0;
   height: 100%;
   transition: all 0.2s ease;
-  width: ${props => (props.isOpen ? '232px' : '72px')};
+  width: ${props => (props.isOpen ? '240px' : '72px')};
   background-color: ${({ theme }) => theme.headerColor};
   color: ${({ theme }) => theme.iconColor};
   box-shadow: ${({ theme }) => theme.boxShadow};

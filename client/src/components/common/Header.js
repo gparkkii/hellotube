@@ -103,6 +103,7 @@ const StyledHeader = styled.header`
       }
       & img {
         width: 32px;
+        margin-left: 20px;
         margin-right: 4px;
       }
     }

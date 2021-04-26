@@ -27,6 +27,10 @@ const Loading = () => {
 export default Loading;
 
 const LoadingBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   animation-duration: 2s;
   animation-timing-function: ease-in-out;
   animation-name: ${bounce};

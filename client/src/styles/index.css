@@ -139,3 +139,7 @@ html, #root {
 .errorTypeLabel {
   color: #de506b !important;
 }
+
+div.vsc-controller {
+  z-index: 99997 !important;
+}

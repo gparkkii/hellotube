@@ -3,18 +3,18 @@ import { Avatar, AvatarImage, BlankBox, BlankName } from 'styles/form/styles';
 import { useColorMaker } from 'hooks/useColorMaker';
 
 const UserAvatar = ({ width, fontSize, profileData }) => {
-  const [BlankBg, BlankColor] = useColorMaker(profileData.hashedEmail);
+  const [BlankBg, BlankColor] = useColorMaker(profileData?.hashedEmail);
 
   return (
     <Avatar width={width}>
       {profileData?.profileImageType === 'blank' ? (
         <BlankBox>
           <AvatarImage
-            backgroundColor={BlankBg}
+            backgroundColor={BlankBg || null}
             src={profileData?.profileImage}
             alt={`${profileData?.name}'s profile`}
           />
-          <BlankName color={BlankColor} fontSize={fontSize}>
+          <BlankName color={BlankColor || null} fontSize={fontSize}>
             {profileData?.nickname.substring(0, 2)}
           </BlankName>
         </BlankBox>

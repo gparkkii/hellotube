@@ -75,5 +75,5 @@ export const GridContainer = styled.div`
 export const SideContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 75%;
 `;
