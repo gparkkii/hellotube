@@ -1,22 +1,20 @@
-/* eslint-disable consistent-return */
-import {
-  GET_VIDEOS,
-  GET_VIDEOS_DETAIL,
-  GET_COMMENTS,
-  GET_LIKES,
-  GET_SUBSCRIBE,
-  SAVE_COMMENTS,
-} from '../actions/types';
-
 const { produce } = require('immer');
 
+export const GET_VIDEOS_REQUEST = 'get_videos_request';
+export const GET_VIDEOS_SUCCESS = 'get_videos_success';
+export const GET_VIDEOS_FAILURE = 'get_videos_failure';
+export const CURRENT_VIDEO_REQUEST = 'current_video_request';
+export const CURRENT_VIDEO_SUCCESS = 'current_video_success';
+export const CURRENT_VIDEO_FAILURE = 'current_video_failure';
+
 const initialState = {
-  getVideoSuccess: false,
-  getCommentsSuccess: false,
-  getLikesSuccess: false,
-  getSubscribeSuccess: false,
-  videoDetailSuccess: false,
-  saveCommentsSuccess: false,
+  error: '',
+  getVideoLoading: false,
+  getVideoDone: false,
+  getVideoError: false,
+  currentVideoLoading: false,
+  currentVideoDone: false,
+  currentVideoError: false,
   videos: {
     views: 0,
     _id: '',
@@ -32,42 +30,53 @@ const initialState = {
     writer: {},
   },
   currentVideo: {},
-  comments: {
-    // writer: {},
-    // videoId: {},
-    // commentTo: {},
-    // content: '',
-  },
-  likes: {},
-  subscribe: {},
+};
+
+export const getAllVideos = () => {
+  return {
+    type: GET_VIDEOS_REQUEST,
+  };
+};
+
+export const getCurrentVideos = data => {
+  return {
+    type: CURRENT_VIDEO_REQUEST,
+    data,
+  };
 };
 
 export default function videoReducer(prevState = initialState, action) {
   return produce(prevState, draft => {
     switch (action.type) {
-      case GET_VIDEOS:
-        draft.getVideoSuccess = action.payload.success;
-        draft.videos = action.payload.videos;
+      case GET_VIDEOS_REQUEST:
+        draft.getVideoLoading = true;
+        draft.getVideoError = null;
+        draft.getVideoDone = false;
         break;
-      case GET_COMMENTS:
-        draft.getCommentsSuccess = action.payload.success;
-        draft.comments = action.payload.comments;
+      case GET_VIDEOS_SUCCESS:
+        draft.getVideoLoading = false;
+        draft.getVideoDone = true;
+        draft.videos = action.payload;
         break;
-      case GET_LIKES:
-        draft.getLikesSuccess = action.payload.success;
-        draft.likes = action.payload.likes;
+      case GET_VIDEOS_FAILURE:
+        draft.getVideoLoading = false;
+        draft.getVideoError = true;
+        draft.error = action.error;
         break;
-      case GET_SUBSCRIBE:
-        draft.getSubscribeSuccess = action.payload.success;
-        draft.subscribe = action.payload.subscribe;
+      case CURRENT_VIDEO_REQUEST:
+        draft.currentVideoLoading = true;
+        draft.currentVideoError = null;
+        draft.currentVideoDone = false;
         break;
-      case GET_VIDEOS_DETAIL:
-        draft.videoDetailSuccess = action.payload.success;
-        draft.currentVideo = action.payload.video;
+      case CURRENT_VIDEO_SUCCESS:
+        draft.currentVideoLoading = false;
+        draft.currentVideoDone = true;
+        draft.currentVideo = action.payload;
         break;
-      case SAVE_COMMENTS:
-        draft.saveCommentsSuccess = action.payload.success;
-        draft.comments = action.payload.comments;
+      case CURRENT_VIDEO_FAILURE:
+        draft.currentVideoLoading = false;
+        draft.currentVideoError = true;
+        draft.error = action.error;
         break;
       default:
         return prevState;
