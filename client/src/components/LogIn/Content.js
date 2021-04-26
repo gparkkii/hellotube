@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from 'modules/actions/user';
 import { useForm } from 'react-hook-form';
 import { PasswordError, EmailError } from 'library/options/errors';
@@ -30,8 +30,17 @@ function Content({ history }) {
   });
 
   const dispatch = useDispatch();
+  const status = useSelector(state => state.user);
   const [RememberId, setRememberId] = useState(false);
   const [ShowPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    if (status.loginDone) {
+      history.push('/');
+    } else if (status.loginError) {
+      alert(status.data.message);
+    }
+  }, [status]);
 
   const handleVisibility = () => {
     setShowPassword(!ShowPassword);
@@ -43,14 +52,7 @@ function Content({ history }) {
 
   const onSubmit = useCallback(user => {
     console.log(user);
-    dispatch(loginUser(user)).then(response => {
-      console.log(response);
-      if (response.payload.success) {
-        history.push('/');
-      } else {
-        alert(response.payload.message);
-      }
-    });
+    dispatch(loginUser(user));
   }, []);
 
   return (

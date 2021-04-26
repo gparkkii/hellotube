@@ -1,5 +1,8 @@
 /* eslint-disable consistent-return */
 import {
+  LOG_IN_REQUEST,
+  LOG_IN_SUCCESS,
+  LOG_IN_FAILURE,
   SIGNUP_USER,
   CHECK_USER,
   LOGIN_USER,
@@ -10,6 +13,9 @@ import {
 const { produce } = require('immer');
 
 const initialState = {
+  loginLoading: false,
+  loginDone: false,
+  loginError: false,
   data: {
     isAuth: '',
     success: '',
@@ -34,6 +40,21 @@ const initialState = {
 export default function userReducer(prevState = initialState, action) {
   return produce(prevState, draft => {
     switch (action.type) {
+      case LOG_IN_REQUEST:
+        draft.loginLoading = true;
+        draft.loginError = null;
+        draft.loginDone = false;
+        break;
+      case LOG_IN_SUCCESS:
+        draft.loginLoading = false;
+        draft.data = action.payload;
+        draft.loginDone = true;
+        break;
+      case LOG_IN_FAILURE:
+        draft.loginLoading = false;
+        draft.loginError = true;
+        draft.data.message = action.error;
+        break;
       case SIGNUP_USER:
         draft.data = action.payload;
         break;
