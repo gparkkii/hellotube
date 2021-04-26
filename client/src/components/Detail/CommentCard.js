@@ -1,49 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import UserAvatar from 'components/common/UserAvatar';
 import UpdateTime from 'library/utils/UpdateTime';
 import { IconButton, Tooltip } from '@material-ui/core';
 import { ThumbUp, ThumbDown } from '@material-ui/icons';
+import CommentForm from './CommentForm';
 
-const CommentCard = ({ comment }) => {
+const CommentCard = ({ Comment, Video }) => {
+  const [OpenReply, setOpenReply] = useState(false);
+
   return (
-    <CardBox>
-      <UserAvatar profileData={comment.writer} width="40px" fontSize="14px" />
-      <CommentText>
-        <div>
-          <span>
-            <p>{comment.writer.nickname}</p>
-            <p>
-              <UpdateTime time={comment.updatedAt} />
-            </p>
-          </span>
-          <Text>{comment.content}</Text>
-        </div>
-        <IconBox>
-          <Icons>
+    <>
+      <CardBox>
+        <UserAvatar profileData={Comment.writer} width="40px" fontSize="14px" />
+        <CommentText>
+          <div>
             <span>
-              <Tooltip title="좋아요">
-                <IconButton>
-                  <ThumbUp />
-                </IconButton>
-              </Tooltip>
-              좋아요
+              <p>{Comment.writer.nickname}</p>
+              <p>
+                <UpdateTime time={Comment.updatedAt} />
+              </p>
             </span>
-            <span>
-              <Tooltip title="싫어요">
-                <IconButton>
-                  <ThumbDown />
-                </IconButton>
-              </Tooltip>
-              싫어요
-            </span>
-          </Icons>
-          <Tooltip title="답글 달기">
-            <button type="button">답글달기</button>
-          </Tooltip>
-        </IconBox>
-      </CommentText>
-    </CardBox>
+            <Text>{Comment.content}</Text>
+          </div>
+          <IconBox>
+            <Icons>
+              <span>
+                <Tooltip title="좋아요">
+                  <IconButton>
+                    <ThumbUp />
+                  </IconButton>
+                </Tooltip>
+                좋아요
+              </span>
+              <span>
+                <Tooltip title="싫어요">
+                  <IconButton>
+                    <ThumbDown />
+                  </IconButton>
+                </Tooltip>
+                싫어요
+              </span>
+            </Icons>
+            <Tooltip title="답글 달기">
+              <button
+                type="button"
+                onClick={e => {
+                  e.preventDefault();
+                  setOpenReply(!OpenReply);
+                }}
+              >
+                답글 달기
+              </button>
+            </Tooltip>
+          </IconBox>
+          {OpenReply && <CommentForm Video={Video} Comment={Comment} />}
+        </CommentText>
+      </CardBox>
+    </>
   );
 };
 
@@ -105,11 +119,11 @@ const Icons = styled.div`
     justify-content: flex-start;
     color: ${({ theme }) => theme.iconColor};
     & p {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 400 !important;
     }
     & svg {
-      font-size: 18px;
+      font-size: 16px;
       color: ${({ theme }) => theme.iconColor};
     }
   }

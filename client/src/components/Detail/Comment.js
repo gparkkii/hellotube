@@ -1,24 +1,12 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllComments, saveComments } from 'modules/reducers/comment';
-import { useForm } from 'react-hook-form';
-import { Create } from '@material-ui/icons';
-import { Tooltip, IconButton } from '@material-ui/core';
-import { ErrorMessage } from 'styles/typography/styles';
+import { getAllComments } from 'modules/reducers/comment';
 import styled from 'styled-components';
-import UserAvatar from 'components/common/UserAvatar';
 import CommentCard from './CommentCard';
+import CommentForm from './CommentForm';
+import CommentReply from './CommentReply';
 
 const Comment = ({ Video }) => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm({
-    mode: 'onTouched',
-  });
-
   const dispatch = useDispatch();
   const status = useSelector(state => state.comment);
   const Comments = useSelector(state => state.comment.comments);
@@ -26,51 +14,26 @@ const Comment = ({ Video }) => {
 
   useEffect(() => {
     dispatch(getAllComments(Video._id));
-    reset();
   }, []);
-
-  const onSubmit = useCallback(
-    data => {
-      const variables = {
-        content: data.comment,
-        writer: userData._id,
-        videoId: Video._id,
-        commentTo: Video.writer._id,
-      };
-      dispatch(saveComments(variables));
-    },
-    [userData, Video, Comments],
-  );
 
   return (
     <CommentBox>
       <h2>댓글 {(status.getCommentDone && Comments.length) || 0}개</h2>
-      {userData && (
-        <CommentForm onSubmit={handleSubmit(onSubmit)}>
-          <UserAvatar profileData={userData} width="40px" fontSize="14px" />
-          <textarea
-            id="comment"
-            name="comment"
-            className={errors.comment ? 'errorUnderline' : null}
-            placeholder="댓글을 입력해주세요"
-            {...register('comment', {
-              maxLength: {
-                value: 100,
-                message: '댓글을 100자 이내로 적어주세요',
-              },
-            })}
-          />
-          <Tooltip title="댓글 입력">
-            <IconButton type="submit">
-              <Create />
-            </IconButton>
-          </Tooltip>
-        </CommentForm>
-      )}
-      {errors.comment && <ErrorMessage>{errors.comment.message}</ErrorMessage>}
+      {userData && <CommentForm Video={Video} />}
       {status.getCommentDone &&
         Comments?.map(comment => {
-          return <CommentCard key={comment._id} comment={comment} />;
+          return (
+            Video.writer._id === comment.commentTo && (
+              <React.Fragment key={comment._id}>
+                <CommentCard Comment={comment} Video={Video} />
+                <CommentReply
+                  Comments={Comments}
+                  ParentComment={comment.writer._id}
+                  Video={Video}
+                />
+              </React.Fragment>
+            )
+          );
         })}
     </CommentBox>
   );
@@ -89,29 +52,5 @@ const CommentBox = styled.div`
     font-size: 15px;
     font-weight: 500;
     margin-left: 10px;
-  }
-`;
-
-const CommentForm = styled.form`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 0px;
-  margin-left: 10px;
-  & textarea {
-    width: calc(100% - 112px);
-    height: 30px;
-    padding: 0px 14px;
-    margin-left: 14px;
-    background-color: transparent;
-    color: ${({ theme }) => theme.textColor};
-    border-bottom: ${({ theme }) => theme.borderColor};
-    &:hover {
-      border-bottom: 1px solid ${({ theme }) => theme.textColor};
-    }
-    &:focus {
-      border-bottom: 2px solid ${({ theme }) => theme.textColor};
-    }
   }
 `;
