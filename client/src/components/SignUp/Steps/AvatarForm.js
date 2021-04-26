@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addAvatarForm } from 'modules/actions/profile';
+import { addAvatarForm } from 'modules/reducers/profile';
 import { useColorMaker } from 'hooks/useColorMaker';
 import {
   FormBox,

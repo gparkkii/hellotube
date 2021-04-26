@@ -36,6 +36,7 @@ module.exports = {
         props: false,
       },
     ],
+    'consistent-return': 'warn',
     'no-unused-vars': 'warn',
     'no-console': 'off',
     'import/prefer-default-export': 'off',

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { signupUser } from 'modules/actions/user';
+import { signupUser } from 'modules/reducers/user';
+import { resetProfileForm } from 'modules/reducers/profile';
 import { media } from 'styles/media_query';
 import { ColumnBox, BorderButton, FormBox } from 'styles/form/styles';
-import { resetProfileForm } from 'modules/actions/profile';
 import styled from 'styled-components';
 import UserForm from './Steps/UserForm';
 import ProfileForm from './Steps/ProfileForm';
@@ -13,6 +13,7 @@ import CompleteForm from './Steps/CompleteForm';
 
 function Stepper({ history }) {
   const dispatch = useDispatch();
+  const status = useSelector(state => state.user);
   const profileData = useSelector(state => state.profile);
 
   const [currentStep, setCurrentStep] = useState(0);
@@ -45,16 +46,26 @@ function Stepper({ history }) {
   const steps = getSteps();
   const isLast = currentStep === steps.length - 1;
 
+  useEffect(() => {
+    if (status.signupDone) {
+      dispatch(resetProfileForm());
+      history.push('/login');
+    } else if (status.signupError) {
+      alert(status.data.message);
+    }
+  }, [status]);
+
   const onSubmit = () => {
-    dispatch(signupUser(profileData)).then(response => {
-      if (response.payload.success) {
-        dispatch(resetProfileForm());
-        history.push('/login');
-      } else {
-        alert(response.payload.message);
-        console.log(response.payload);
-      }
-    });
+    dispatch(signupUser(profileData));
+    // .then(response => {
+    //   if (response.payload.success) {
+    //     dispatch(resetProfileForm());
+    //     history.push('/login');
+    //   } else {
+    //     alert(response.payload.message);
+    //     console.log(response.payload);
+    //   }
+    // });
   };
 
   return (

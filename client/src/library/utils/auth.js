@@ -2,7 +2,7 @@
 /* eslint-disable func-names */
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { auth } from 'modules/actions/user';
+import { auth } from 'modules/reducers/user';
 
 export default function (SpecificComponent, option, adminRoute = null) {
   function AuthenticationCheck(props) {

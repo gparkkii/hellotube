@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addProfileForm } from 'modules/actions/profile';
+import { addProfileForm } from 'modules/reducers/profile';
 import { useForm } from 'react-hook-form';
 import {
   DescriptionError,

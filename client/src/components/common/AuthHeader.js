@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutUser } from 'modules/actions/user';
+import { logoutUser } from 'modules/reducers/user';
 import { Menu, MenuItem, IconButton } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
@@ -46,9 +46,7 @@ const AuthHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const onClickHandler = useCallback(() => {
-    dispatch(logoutUser()).then(response => {
-      console.log(response);
-    });
+    dispatch(logoutUser());
   }, []);
 
   const handleClick = e => {

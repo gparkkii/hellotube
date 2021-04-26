@@ -1,12 +1,9 @@
-/* eslint-disable consistent-return */
-import {
-  USER_FORM,
-  PROFILE_FORM,
-  AVATAR_FORM,
-  RESET_FORM,
-} from '../actions/types';
-
 const { produce } = require('immer');
+
+const USER_FORM = 'user_form';
+const PROFILE_FORM = 'profile_form';
+const AVATAR_FORM = 'avatar_form';
+const RESET_FORM = 'reset_form';
 
 const initialState = {
   name: '',
@@ -19,6 +16,33 @@ const initialState = {
   profileImage: '',
   profileImageType: '',
   hashedEmail: '',
+};
+
+export const addUserForm = data => {
+  return {
+    type: USER_FORM,
+    payload: data,
+  };
+};
+
+export const addProfileForm = data => {
+  return {
+    type: PROFILE_FORM,
+    payload: data,
+  };
+};
+
+export const addAvatarForm = data => {
+  return {
+    type: AVATAR_FORM,
+    payload: data,
+  };
+};
+
+export const resetProfileForm = () => {
+  return {
+    type: RESET_FORM,
+  };
 };
 
 export default function profileReducer(prevState = initialState, action) {

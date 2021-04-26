@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from 'modules/actions/user';
+import { loginUser } from 'modules/reducers/user';
 import { useForm } from 'react-hook-form';
 import { PasswordError, EmailError } from 'library/options/errors';
 import { ErrorMessage, LogoTitle } from 'styles/typography/styles';
