@@ -17,6 +17,7 @@ const Comment = () => {
     mode: 'onTouched',
   });
 
+  const Comments = useSelector(state => state.video.Comments);
   const userData = useSelector(state => state.user.profile);
 
   const onSubmit = useCallback(data => {
@@ -25,7 +26,7 @@ const Comment = () => {
 
   return (
     <CommentBox>
-      <h2>댓글 {}개</h2>
+      <h2>댓글 {Comments ? Comments.length : 0}개</h2>
       {userData && (
         <CommentForm onSubmit={handleSubmit(onSubmit)}>
           <UserAvatar profileData={userData} width="40px" fontSize="14px" />
@@ -49,7 +50,7 @@ const Comment = () => {
         </CommentForm>
       )}
       {errors.comment && <ErrorMessage>{errors.comment.message}</ErrorMessage>}
-      <CommentCard />
+      {Comments && <CommentCard />}
     </CommentBox>
   );
 };
@@ -76,7 +77,7 @@ const CommentForm = styled.form`
   padding: 15px 0px;
   margin-left: 10px;
   & textarea {
-    width: calc(100% - 54px);
+    width: calc(100% - 120px);
     height: 30px;
     padding: 0px 14px;
     margin-left: 14px;

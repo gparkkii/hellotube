@@ -2,6 +2,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDetailVideos, getAllComments } from 'modules/actions/video';
 import { SideContainer } from 'styles/container/styles';
 import styled from 'styled-components';
 import Comment from './Comment';
@@ -9,17 +11,12 @@ import Subscribe from './Subscribe';
 import Like from './Like';
 
 const Content = ({ videoId }) => {
-  const [Video, setVideo] = useState('');
+  const dispatch = useDispatch();
+  const Video = useSelector(state => state.video.currentVideo);
 
   useEffect(() => {
-    axios.post('/api/video/detail', { videoId }).then(response => {
-      console.log(response);
-      if (response.data.success) {
-        setVideo(response.data.video);
-      } else {
-        alert('비디오 가져오는데 실패했습니다.');
-      }
-    });
+    dispatch(getDetailVideos({ videoId }));
+    dispatch(getAllComments({ videoId }));
   }, []);
 
   return (
