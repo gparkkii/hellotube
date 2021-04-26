@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import axios from 'axios';
 import React, { useCallback, useState } from 'react';
 import { withRouter } from 'react-router-dom';

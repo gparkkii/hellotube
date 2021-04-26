@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import React, { useCallback, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { checkUser } from 'modules/reducers/user';

@@ -1,8 +1,6 @@
-/* eslint-disable no-underscore-dangle */
-import axios from 'axios';
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveComments } from 'modules/actions/video';
+import { saveComments } from 'modules/reducers/comment';
 import { useForm } from 'react-hook-form';
 import { Create } from '@material-ui/icons';
 import { Tooltip, IconButton } from '@material-ui/core';

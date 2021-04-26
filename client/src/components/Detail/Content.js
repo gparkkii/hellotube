@@ -1,9 +1,8 @@
-/* eslint-disable jsx-a11y/media-has-caption */
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDetailVideos, getAllComments } from 'modules/actions/video';
+import { getDetailVideos } from 'modules/reducers/video';
+import { getAllComments } from 'modules/reducers/comment';
 import { SideContainer } from 'styles/container/styles';
 import styled from 'styled-components';
 import Comment from './Comment';
@@ -31,18 +30,7 @@ const Content = ({ videoId }) => {
           style={{ width: '100%' }}
           alt={Video.title}
         >
-          <track
-            src="sub_kr.vtt"
-            kind="subtitles"
-            srcLang="ko"
-            label="Korean"
-          />
-          <track
-            src="sub_en.vtt"
-            kind="subtitles"
-            srcLang="en"
-            label="English"
-          />
+          <track kind="captions" />
         </video>
         <strong>{Video.title}</strong>
         <Like Video={Video} />

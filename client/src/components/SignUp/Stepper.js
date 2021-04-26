@@ -57,15 +57,6 @@ function Stepper({ history }) {
 
   const onSubmit = () => {
     dispatch(signupUser(profileData));
-    // .then(response => {
-    //   if (response.payload.success) {
-    //     dispatch(resetProfileForm());
-    //     history.push('/login');
-    //   } else {
-    //     alert(response.payload.message);
-    //     console.log(response.payload);
-    //   }
-    // });
   };
 
   return (

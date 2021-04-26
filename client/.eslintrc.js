@@ -38,6 +38,7 @@ module.exports = {
     ],
     'consistent-return': 'warn',
     'no-unused-vars': 'warn',
+    'no-underscore-dangle': 'warn',
     'no-console': 'off',
     'import/prefer-default-export': 'off',
     'react/jsx-props-no-spreading': 'off',
