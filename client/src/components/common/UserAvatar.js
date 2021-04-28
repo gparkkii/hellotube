@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, AvatarImage, BlankBox, BlankName } from 'styles/form/styles';
+import { Avatar, AvatarImage, BlankBox, BlankName } from 'styles/form';
 import { useColorMaker } from 'hooks/useColorMaker';
 
 const UserAvatar = ({ width, fontSize, profileData }) => {

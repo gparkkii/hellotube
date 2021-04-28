@@ -1,6 +1,6 @@
 import React from 'react';
 import github from 'assets/github.png';
-import { SocialLogin } from 'styles/form/styles';
+import { SocialLogin } from 'styles/form';
 
 const GitHubLogin = () => {
   return (

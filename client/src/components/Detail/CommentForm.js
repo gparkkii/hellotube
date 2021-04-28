@@ -4,7 +4,7 @@ import { saveComments } from 'modules/reducers/comment';
 import { useForm } from 'react-hook-form';
 import { Create } from '@material-ui/icons';
 import { Tooltip, IconButton } from '@material-ui/core';
-import { ErrorMessage } from 'styles/typography/styles';
+import { ErrorMessage } from 'styles/typography';
 import styled from 'styled-components';
 import UserAvatar from 'components/common/UserAvatar';
 

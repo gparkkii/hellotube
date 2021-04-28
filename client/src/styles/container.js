@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import { media } from '../media_query';
+import styled from 'styled-components';
+import { media } from './media_query';
 
 export const WrapContainer = styled.main`
   min-height: 100%;

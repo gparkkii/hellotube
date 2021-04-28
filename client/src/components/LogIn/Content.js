@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from 'modules/reducers/user';
 import { useForm } from 'react-hook-form';
 import { PasswordError, EmailError } from 'library/options/errors';
-import { ErrorMessage, LogoTitle } from 'styles/typography/styles';
+import { ErrorMessage, LogoTitle } from 'styles/typography';
 import {
   FormBox,
   InputBox,
@@ -12,9 +12,9 @@ import {
   OutlinedInput,
   FilledButton,
   AbsoluteButton,
-} from 'styles/form/styles';
+} from 'styles/form';
 import styled from 'styled-components';
-import StyledCheckBox from 'styles/form/StyledCheckBox';
+import StyledCheckBox from 'styles/StyledCheckBox';
 import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';

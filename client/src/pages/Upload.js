@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlexContainer } from 'styles/container/styles';
+import { FlexContainer } from 'styles/container';
 import AppLayout from 'components/common/AppLayout';
 import Content from 'components/Upload/Content';
 

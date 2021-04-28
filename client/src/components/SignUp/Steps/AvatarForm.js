@@ -13,8 +13,8 @@ import {
   AvatarImage,
   AvatarLabelBox,
   HiddenInput,
-} from 'styles/form/styles';
-import { ProfileTitle, ContentTitle } from 'styles/typography/styles';
+} from 'styles/form';
+import { ProfileTitle, ContentTitle } from 'styles/typography';
 import axios from 'axios';
 
 const AvatarForm = ({ next }) => {

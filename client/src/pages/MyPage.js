@@ -1,6 +1,6 @@
 import React from 'react';
 import AppLayout from 'components/common/AppLayout';
-import { FlexContainer } from 'styles/container/styles';
+import { FlexContainer } from 'styles/container';
 import Content from 'components/MyPage/Content';
 
 const MyPage = () => {

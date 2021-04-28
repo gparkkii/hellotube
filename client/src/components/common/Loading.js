@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import logo from 'assets/logo.png';
-import { FlexContainer } from 'styles/container/styles';
+import { FlexContainer } from 'styles/container';
 import { bounce } from 'styles/keyframes';
 
 const Loading = () => {

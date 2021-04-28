@@ -15,8 +15,8 @@ import {
   BorderButton,
   ColumnBox,
   MarginBox,
-} from 'styles/form/styles';
-import { ErrorMessage, InputAlert } from 'styles/typography/styles';
+} from 'styles/form';
+import { ErrorMessage, InputAlert } from 'styles/typography';
 import UserAvatar from '../common/UserAvatar';
 
 const EditForm = ({ profileData, readOnly }) => {

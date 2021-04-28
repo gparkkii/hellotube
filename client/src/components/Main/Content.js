@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { GridContainer } from 'styles/container/styles';
+import { GridContainer } from 'styles/container';
 import { getAllVideos } from 'modules/reducers/video';
 import VideoCard from './VideoCard';
 

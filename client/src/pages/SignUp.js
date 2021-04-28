@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
-import { FlexContainer } from 'styles/container/styles';
+import { FlexContainer } from 'styles/container';
 import styled from 'styled-components';
 import logo from 'assets/logo.png';
 import Stepper from 'components/SignUp/Stepper';

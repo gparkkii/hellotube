@@ -16,13 +16,13 @@ import {
   AbsoluteButton,
   MarginBox,
   BorderButton,
-} from 'styles/form/styles';
+} from 'styles/form';
 import {
   AlertMessage,
   ContentTitle,
   ErrorMessage,
   InputAlert,
-} from 'styles/typography/styles';
+} from 'styles/typography';
 import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';

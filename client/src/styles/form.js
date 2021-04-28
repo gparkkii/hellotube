@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { media } from '../media_query';
+import { media } from './media_query';
 
 export const MarginBox = styled.div`
   margin: ${props => props.margin};

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentVideos } from 'modules/reducers/video';
-import { SideContainer } from 'styles/container/styles';
+import { SideContainer } from 'styles/container';
 import styled from 'styled-components';
 import Comment from './Comment';
 import Subscribe from './Subscribe';

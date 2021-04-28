@@ -1,6 +1,6 @@
 import React from 'react';
 import googleLogo from 'assets/glogo.png';
-import { SocialLogin } from 'styles/form/styles';
+import { SocialLogin } from 'styles/form';
 
 function GoogleLoginHooks() {
   return (

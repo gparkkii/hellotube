@@ -14,12 +14,8 @@ import {
   StyledTextArea,
   MarginBox,
   BorderButton,
-} from 'styles/form/styles';
-import {
-  AlertMessage,
-  ContentTitle,
-  ErrorMessage,
-} from 'styles/typography/styles';
+} from 'styles/form';
+import { AlertMessage, ContentTitle, ErrorMessage } from 'styles/typography';
 
 const ProfileForm = ({ next }) => {
   const dispatch = useDispatch();

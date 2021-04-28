@@ -1,6 +1,6 @@
 import React from 'react';
 import naver from 'assets/naver.png';
-import { SocialLogin } from 'styles/form/styles';
+import { SocialLogin } from 'styles/form';
 
 const NaverLogin = () => {
   return (

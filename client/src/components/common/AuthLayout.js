@@ -1,5 +1,5 @@
 import React from 'react';
-import { WrapContainer } from 'styles/container/styles';
+import { WrapContainer } from 'styles/container';
 
 const AuthLayout = ({ children }) => {
   return (

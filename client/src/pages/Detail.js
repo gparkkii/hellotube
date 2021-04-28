@@ -4,7 +4,7 @@ import {
   unstable_createMuiStrictModeTheme as createMuiTheme,
 } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
-import { MarginBox } from 'styles/form/styles';
+import { MarginBox } from 'styles/form';
 import AppLayout from 'components/common/AppLayout';
 import Content from 'components/Detail/Content';
 

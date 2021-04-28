@@ -10,10 +10,10 @@ import {
   InputBox,
   OutlinedInput,
   OutlinedTextArea,
-} from 'styles/form/styles';
+} from 'styles/form';
 import { Backup } from '@material-ui/icons';
 import { useForm } from 'react-hook-form';
-import { ErrorMessage, SmallMessage } from 'styles/typography/styles';
+import { ErrorMessage, SmallMessage } from 'styles/typography';
 import { PrivateOptions, CategoryOptions } from './Options';
 
 const Content = ({ history }) => {
