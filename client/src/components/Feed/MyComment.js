@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMyComments } from 'modules/reducers/comment';
 import { GridContainer } from 'styles/container';

@@ -26,6 +26,9 @@ import {
   IS_DISLIKED_REQUEST,
   IS_DISLIKED_SUCCESS,
   IS_DISLIKED_FAILURE,
+  MY_LIKES_REQUEST,
+  MY_LIKES_SUCCESS,
+  MY_LIKES_FAILURE,
 } from '../reducers/like';
 
 function getLikesAPI(data) {
@@ -212,6 +215,35 @@ function* isDisliked(action) {
   }
 }
 
+function myLikesAPI(data) {
+  return axios
+    .post('/api/like/user', { userId: data })
+    .then(response => ({ response }));
+}
+
+function* myLikes(action) {
+  try {
+    const { response } = yield call(myLikesAPI, action.data);
+    const videos = [];
+    if (response.data.success) {
+      response.data.likes.map(like => {
+        return videos.push(like.videoId);
+      });
+      yield put({
+        type: MY_LIKES_SUCCESS,
+        payload: response.data,
+        videos,
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: MY_LIKES_FAILURE,
+      error: err,
+    });
+  }
+}
+
 function* watchAllLikes() {
   yield takeLatest(GET_LIKES_REQUEST, getLikes);
 }
@@ -244,6 +276,10 @@ function* watchIsDisliked() {
   yield takeLatest(IS_DISLIKED_REQUEST, isDisliked);
 }
 
+function* watchMyLikes() {
+  yield takeLatest(MY_LIKES_REQUEST, myLikes);
+}
+
 export default function* likeSaga() {
   yield all([
     fork(watchAllLikes),
@@ -256,5 +292,6 @@ export default function* likeSaga() {
 
     fork(watchIsLiked),
     fork(watchIsDisliked),
+    fork(watchMyLikes),
   ]);
 }

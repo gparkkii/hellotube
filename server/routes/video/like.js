@@ -92,4 +92,16 @@ router.post("/delete/dislike", (req, res) => {
   })
 })
 
+router.post('/user', (req, res) => {
+  Like.find({'userId': req.body.userId})
+    .populate('userId')
+    .populate({path: 'videoId', populate: {path: 'writer'}})
+    .sort({createdAt: -1})
+    .exec((err, likes) => {
+      console.log(likes);
+      if(err) return res.status(400).send(err);
+      return res.status(200).json({ success: true, likes })
+    })
+  })
+
 module.exports = router;

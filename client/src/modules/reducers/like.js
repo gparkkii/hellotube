@@ -32,6 +32,10 @@ export const IS_DISLIKED_REQUEST = 'is_disliked_request';
 export const IS_DISLIKED_SUCCESS = 'is_disliked_success';
 export const IS_DISLIKED_FAILURE = 'is_disliked_failure';
 
+export const MY_LIKES_REQUEST = 'my_likes_request';
+export const MY_LIKES_SUCCESS = 'my_likes_success';
+export const MY_LIKES_FAILURE = 'my_likes_failure';
+
 const initialState = {
   getLikesLoading: false,
   getLikesError: false,
@@ -64,6 +68,10 @@ const initialState = {
   isDislikedLoading: false,
   isDislikedError: false,
   isDislikedDone: false,
+
+  myLikesLoading: false,
+  myLikesError: false,
+  myLikesDone: false,
 
   likes: {},
   dislikes: {},
@@ -125,6 +133,13 @@ export const setisLike = data => {
 export const setisDislike = data => {
   return {
     type: IS_DISLIKED_REQUEST,
+    data,
+  };
+};
+
+export const getMyLikes = data => {
+  return {
+    type: MY_LIKES_REQUEST,
     data,
   };
 };
@@ -276,6 +291,22 @@ export default function likeReducer(prevState = initialState, action) {
       case IS_DISLIKED_FAILURE:
         draft.isDislikedLoading = false;
         draft.isDislikedError = true;
+        draft.error = action.error;
+        break;
+      case MY_LIKES_REQUEST:
+        draft.myLikesLoading = true;
+        draft.myLikesError = null;
+        draft.myLikesDone = false;
+        break;
+      case MY_LIKES_SUCCESS:
+        draft.myLikesLoading = false;
+        draft.myLikesDone = true;
+        draft.myLikess = action.payload.likes;
+        draft.likeVideos = action.videos;
+        break;
+      case MY_LIKES_FAILURE:
+        draft.myLikesLoading = false;
+        draft.myLikesError = true;
         draft.error = action.error;
         break;
       default:
