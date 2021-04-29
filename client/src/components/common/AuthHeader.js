@@ -47,6 +47,7 @@ const AuthHeader = () => {
 
   const onClickHandler = useCallback(() => {
     dispatch(logoutUser());
+    window.localStorage.setItem('userId', null);
   }, []);
 
   const handleClick = e => {

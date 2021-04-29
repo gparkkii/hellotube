@@ -1,11 +1,16 @@
+import { Tooltip } from '@material-ui/core';
 import React from 'react';
 import styled from 'styled-components';
 
 function ThemeToggle({ toggle, mode }) {
   return (
-    <ThemeButton type="button" onClick={toggle} mode={mode}>
-      {mode === 'dark' ? 'dark 🌚' : '🌝 white'}
-    </ThemeButton>
+    <Tooltip
+      title={mode === 'dark' ? '라이트 모드로 바꾸기' : '다크 모드로 바꾸기'}
+    >
+      <ThemeButton type="button" onClick={toggle} mode={mode}>
+        {mode === 'dark' ? '🌝 white' : 'dark 🌚'}
+      </ThemeButton>
+    </Tooltip>
   );
 }
 

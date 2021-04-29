@@ -118,7 +118,7 @@ html, #root {
 } 
 
 .header-active > button > span {
-  color: #db2b25;
+  color: #db2b25 !important;
 }
 
 .focusedLabel {
@@ -150,4 +150,8 @@ html, #root {
 
 div.vsc-controller {
   z-index: 99997 !important;
+}
+
+.MuiTooltip-popper {
+  z-index: 99999 !important;
 }

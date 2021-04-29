@@ -10,7 +10,7 @@ const VideoCard = ({ video }) => {
 
   return (
     <>
-      <Link to={`/video/${video._id}`}>
+      <Link to={`/watch/${video._id}`}>
         <ImgBox>
           <img src={video.thumbnail} alt={video.thumbnail} />
           <Duration>

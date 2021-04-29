@@ -24,7 +24,7 @@ const Header = () => {
     <ThemeProvider theme={theme}>
       <StyledHeader>
         <nav>
-          <SideBar />
+          {isAuth && <SideBar />}
           <NavLink to="/">
             <img src={logo} alt="logo" />
             <p>HelloTube</p>
@@ -40,17 +40,20 @@ const Header = () => {
           {isAuth && (
             <>
               <Tooltip title="검색">
-                <IconButton aria-label="search">
+                <IconButton aria-label="search" activeClassName="header-active">
                   <Search style={{ fontSize: 24 }} />
                 </IconButton>
               </Tooltip>
               <Tooltip title="내 동영상">
-                <IconButton aria-label="bookmark">
+                <IconButton
+                  aria-label="bookmark"
+                  activeClassName="header-active"
+                >
                   <AllInbox style={{ fontSize: 24 }} />
                 </IconButton>
               </Tooltip>
               <Tooltip title="동영상 업로드">
-                <NavLink to="video/upload" activeClassName="side-active">
+                <NavLink exact to="/upload" activeClassName="header-active">
                   <IconButton aria-label="upload">
                     <AddAPhoto style={{ fontSize: 23.5 }} />
                   </IconButton>
@@ -103,7 +106,6 @@ const StyledHeader = styled.header`
       }
       & img {
         width: 32px;
-        margin-left: 20px;
         margin-right: 4px;
       }
     }

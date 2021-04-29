@@ -11,8 +11,9 @@ const Like = ({ videoId, userId, likes }) => {
   const isLiked = useSelector(state => state.likes.isLiked);
 
   const onClickLike = useCallback(() => {
-    console.log(isLiked);
-    if (isLiked) {
+    if (!userId) {
+      alert('로그인이 필요한 동작입니다.');
+    } else if (isLiked) {
       dispatch(deleteLike({ videoId, userId }));
     } else {
       dispatch(addLike({ videoId, userId }));

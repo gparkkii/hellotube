@@ -6,7 +6,7 @@ export const WrapContainer = styled.main`
   position: relative;
   padding-top: 60px;
   padding-bottom: 80px;
-  padding-left: 72px;
+  padding-left: ${props => props.isAuth && '72px'};
 `;
 
 export const MainContainer = styled.div`

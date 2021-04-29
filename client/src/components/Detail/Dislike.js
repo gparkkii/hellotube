@@ -10,7 +10,9 @@ const Dislike = ({ videoId, userId, dislikes }) => {
   const isDisliked = useSelector(state => state.likes.isDisliked);
 
   const onClickDislike = useCallback(() => {
-    if (isDisliked) {
+    if (!userId) {
+      alert('로그인이 필요한 동작입니다.');
+    } else if (isDisliked) {
       dispatch(deleteDislike({ videoId, userId }));
     } else {
       dispatch(addDislike({ videoId, userId }));

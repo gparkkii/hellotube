@@ -3,10 +3,12 @@ import styled from 'styled-components';
 import UserAvatar from 'components/common/UserAvatar';
 import UpdateTime from 'library/utils/UpdateTime';
 import { Tooltip } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 import CommentForm from './CommentForm';
 
 const CommentCard = ({ Comment, Video }) => {
   const [OpenReply, setOpenReply] = useState(false);
+  const isAuth = useSelector(state => state.user.data.isAuth);
 
   return (
     <>
@@ -28,7 +30,11 @@ const CommentCard = ({ Comment, Video }) => {
                 type="button"
                 onClick={e => {
                   e.preventDefault();
-                  setOpenReply(!OpenReply);
+                  if (!isAuth) {
+                    alert('로그인이 필요한 동작입니다.');
+                  } else {
+                    setOpenReply(!OpenReply);
+                  }
                 }}
               >
                 답글 달기

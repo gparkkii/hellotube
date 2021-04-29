@@ -6,6 +6,7 @@ import ThemeLayout from 'components/common/ThemeLayout';
 import Auth from 'library/utils/auth';
 
 const Main = loadable(() => import('pages/Main.js'));
+const Feed = loadable(() => import('pages/Feed.js'));
 const Login = loadable(() => import('pages/Login.js'));
 const SignUp = loadable(() => import('pages/SignUp.js'));
 const MyPage = loadable(() => import('pages/MyPage.js'));
@@ -30,8 +31,9 @@ function App() {
             <Route path="/login" component={Auth(Login, false)} />
             <Route path="/signup" component={Auth(SignUp, false)} />
             <Route path="/mypage" component={Auth(MyPage, true)} />
-            <Route path="/video/upload" component={Auth(Upload, true)} />
-            <Route path="/video/:id" component={Auth(Detail, null)} />
+            <Route path="/upload" component={Auth(Upload, true)} />
+            <Route path="/feed" component={Auth(Feed, true)} />
+            <Route path="/watch/:id" component={Auth(Detail, null)} />
           </Switch>
         </ThemeLayout>
       </Suspense>
