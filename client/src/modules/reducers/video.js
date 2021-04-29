@@ -6,6 +6,9 @@ export const GET_VIDEOS_FAILURE = 'get_videos_failure';
 export const CURRENT_VIDEO_REQUEST = 'current_video_request';
 export const CURRENT_VIDEO_SUCCESS = 'current_video_success';
 export const CURRENT_VIDEO_FAILURE = 'current_video_failure';
+export const MY_VIDEOS_REQUEST = 'my_videos_request';
+export const MY_VIDEOS_SUCCESS = 'my_videos_success';
+export const MY_VIDEOS_FAILURE = 'my_videos_failure';
 
 const initialState = {
   error: '',
@@ -15,6 +18,9 @@ const initialState = {
   currentVideoLoading: false,
   currentVideoDone: false,
   currentVideoError: false,
+  myVideosLoading: false,
+  myVideosDone: false,
+  myVideosError: false,
   videos: {
     views: 0,
     _id: '',
@@ -30,6 +36,7 @@ const initialState = {
     writer: {},
   },
   currentVideo: {},
+  myVideos: {},
 };
 
 export const getAllVideos = () => {
@@ -41,6 +48,13 @@ export const getAllVideos = () => {
 export const getCurrentVideos = data => {
   return {
     type: CURRENT_VIDEO_REQUEST,
+    data,
+  };
+};
+
+export const getMyVideos = data => {
+  return {
+    type: MY_VIDEOS_REQUEST,
     data,
   };
 };
@@ -76,6 +90,21 @@ export default function videoReducer(prevState = initialState, action) {
       case CURRENT_VIDEO_FAILURE:
         draft.currentVideoLoading = false;
         draft.currentVideoError = true;
+        draft.error = action.error;
+        break;
+      case MY_VIDEOS_REQUEST:
+        draft.myVideosLoading = true;
+        draft.myVideosError = null;
+        draft.myVideosDone = false;
+        break;
+      case MY_VIDEOS_SUCCESS:
+        draft.myVideosLoading = false;
+        draft.myVideosDone = true;
+        draft.myVideos = action.payload.videos;
+        break;
+      case MY_VIDEOS_FAILURE:
+        draft.myVideosLoading = false;
+        draft.myVideosError = true;
         draft.error = action.error;
         break;
       default:
