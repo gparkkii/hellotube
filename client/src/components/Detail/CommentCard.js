@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import UserAvatar from 'components/common/UserAvatar';
 import UpdateTime from 'library/utils/UpdateTime';
-import { IconButton, Tooltip } from '@material-ui/core';
-import { ThumbUp, ThumbDown } from '@material-ui/icons';
+import { Tooltip } from '@material-ui/core';
 import CommentForm from './CommentForm';
+import Dislike from './Dislike';
+import Like from './Like';
 
 const CommentCard = ({ Comment, Video }) => {
   const [OpenReply, setOpenReply] = useState(false);
@@ -25,22 +26,8 @@ const CommentCard = ({ Comment, Video }) => {
           </div>
           <IconBox>
             <Icons>
-              <span>
-                <Tooltip title="좋아요">
-                  <IconButton>
-                    <ThumbUp />
-                  </IconButton>
-                </Tooltip>
-                좋아요
-              </span>
-              <span>
-                <Tooltip title="싫어요">
-                  <IconButton>
-                    <ThumbDown />
-                  </IconButton>
-                </Tooltip>
-                싫어요
-              </span>
+              <Like />
+              <Dislike />
             </Icons>
             <Tooltip title="답글 달기">
               <button

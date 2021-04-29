@@ -15,7 +15,6 @@ function getVideoAPI() {
 }
 
 function* getVideos() {
-  console.log('saga logIn');
   try {
     const { response } = yield call(getVideoAPI);
     if (response.data.success) {

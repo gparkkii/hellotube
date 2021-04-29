@@ -20,8 +20,6 @@ const CommentReply = ({ Comments, Video, ParentComment }) => {
 
   const renderReplyComment = parentId =>
     Comments.map(comment => {
-      console.log(parentId);
-      console.log(comment);
       return (
         comment.commentTo === parentId && (
           <React.Fragment key={comment._id}>

@@ -1,72 +1,33 @@
-import React from 'react';
-import styled from 'styled-components';
-import UpdateTime from 'library/utils/UpdateTime';
+/* eslint-disable array-callback-return */
+import React, { useCallback } from 'react';
 import { IconButton, Tooltip } from '@material-ui/core';
-import { ThumbUp, ThumbDown, PermMedia } from '@material-ui/icons';
+import { ThumbUp } from '@material-ui/icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { addLike, deleteLike } from 'modules/reducers/like';
 
-const Like = ({ Video }) => {
+const Like = ({ videoId, userId, likes }) => {
+  const dispatch = useDispatch();
+  const isLiked = useSelector(state => state.likes.isLiked);
+
+  const onClickLike = useCallback(() => {
+    console.log(isLiked);
+    if (isLiked) {
+      dispatch(deleteLike({ videoId, userId }));
+    } else {
+      dispatch(addLike({ videoId, userId }));
+    }
+  }, [likes, videoId, userId, isLiked]);
+
   return (
-    <InfoBox>
-      <span>
-        <p>조회수 {Video.views}회 </p>
-        <p>
-          {' '}
-          ･ <UpdateTime time={Video.updatedAt} />
-        </p>
-      </span>
-      <span>
-        <span>
-          <Tooltip title="좋아요">
-            <IconButton>
-              <ThumbUp />
-            </IconButton>
-          </Tooltip>
-          좋아요
-        </span>
-        <span>
-          <Tooltip title="싫어요">
-            <IconButton>
-              <ThumbDown />
-            </IconButton>
-          </Tooltip>
-          싫어요
-        </span>
-        <span>
-          <Tooltip title="저장">
-            <IconButton>
-              <PermMedia />
-            </IconButton>
-          </Tooltip>
-          저장
-        </span>
-      </span>
-    </InfoBox>
+    <span>
+      <Tooltip title="좋아요">
+        <IconButton onClick={onClickLike}>
+          <ThumbUp />
+        </IconButton>
+      </Tooltip>
+      <p>{likes?.length}</p>
+    </span>
   );
 };
 
 export default Like;
-
-const InfoBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 14px;
-  font-weight: 500;
-  padding-bottom: 8px;
-  color: ${({ theme }) => theme.iconColor};
-  border-bottom: ${({ theme }) => theme.borderColor};
-  & span {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    & button {
-      font-size: 14px;
-      color: ${({ theme }) => theme.iconColor};
-      & svg {
-        font-size: 20px;
-      }
-    }
-  }
-`;
