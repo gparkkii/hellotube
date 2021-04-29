@@ -4,6 +4,7 @@ import { IconButton, Tooltip } from '@material-ui/core';
 import { ThumbUp } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { addLike, deleteLike } from 'modules/reducers/like';
+import { InfoIcons } from 'styles/form';
 
 const Like = ({ videoId, userId, likes }) => {
   const dispatch = useDispatch();
@@ -19,14 +20,14 @@ const Like = ({ videoId, userId, likes }) => {
   }, [likes, videoId, userId, isLiked]);
 
   return (
-    <span>
+    <InfoIcons isActive={isLiked}>
       <Tooltip title="좋아요">
         <IconButton onClick={onClickLike}>
           <ThumbUp />
         </IconButton>
       </Tooltip>
       <p>{likes?.length}</p>
-    </span>
+    </InfoIcons>
   );
 };
 

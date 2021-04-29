@@ -308,3 +308,14 @@ export const BlankName = styled.div`
   font-size: ${props => props.fontSize || '28px'};
   color: ${props => props.color || '#212121'};
 `;
+
+export const InfoIcons = styled.span`
+  & p {
+    font-weight: ${props => props.isActive && '600'};
+    color: ${props => props.isActive && '#065fd4'};
+  }
+  & svg {
+    color: ${props => props.isActive && '#065fd4'};
+  }
+  border-bottom: ${props => props.isActive && '1px solid #065fd4'};
+`;

@@ -105,7 +105,6 @@ const InfoBox = styled.div`
   justify-content: space-between;
   font-size: 14px;
   font-weight: 500;
-  padding-bottom: 8px;
   color: ${({ theme }) => theme.iconColor};
   border-bottom: ${({ theme }) => theme.borderColor};
   & span {

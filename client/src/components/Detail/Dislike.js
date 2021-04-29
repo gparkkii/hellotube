@@ -3,6 +3,7 @@ import { IconButton, Tooltip } from '@material-ui/core';
 import { ThumbDown } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { addDislike, deleteDislike } from 'modules/reducers/like';
+import { InfoIcons } from 'styles/form';
 
 const Dislike = ({ videoId, userId, dislikes }) => {
   const dispatch = useDispatch();
@@ -16,14 +17,14 @@ const Dislike = ({ videoId, userId, dislikes }) => {
     }
   }, [videoId, userId, isDisliked]);
   return (
-    <span>
+    <InfoIcons isActive={isDisliked}>
       <Tooltip title="싫어요">
         <IconButton onClick={onClickDislike}>
           <ThumbDown />
         </IconButton>
       </Tooltip>
       <p>{dislikes?.length}</p>
-    </span>
+    </InfoIcons>
   );
 };
 
