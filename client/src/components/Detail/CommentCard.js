@@ -4,8 +4,6 @@ import UserAvatar from 'components/common/UserAvatar';
 import UpdateTime from 'library/utils/UpdateTime';
 import { Tooltip } from '@material-ui/core';
 import CommentForm from './CommentForm';
-import Dislike from './Dislike';
-import Like from './Like';
 
 const CommentCard = ({ Comment, Video }) => {
   const [OpenReply, setOpenReply] = useState(false);
@@ -25,10 +23,6 @@ const CommentCard = ({ Comment, Video }) => {
             <Text>{Comment.content}</Text>
           </div>
           <IconBox>
-            <Icons>
-              <Like />
-              <Dislike />
-            </Icons>
             <Tooltip title="답글 달기">
               <button
                 type="button"
@@ -81,37 +75,10 @@ const Text = styled.p`
 `;
 
 const IconBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between !important;
   width: 100%;
   margin-top: 4px;
-  margin-left: -4px;
+  margin-left: 4px;
   & button {
     font-size: 13px;
-    text-decoration: underline;
-  }
-`;
-
-const Icons = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  & span {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    color: ${({ theme }) => theme.iconColor};
-    & p {
-      font-size: 13px;
-      font-weight: 400 !important;
-    }
-    & svg {
-      font-size: 16px;
-      color: ${({ theme }) => theme.iconColor};
-    }
   }
 `;
