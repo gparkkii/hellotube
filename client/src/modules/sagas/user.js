@@ -23,6 +23,7 @@ function* login(action) {
   try {
     const { response } = yield call(logInAPI, action.data);
     if (response.data.success) {
+      window.localStorage.setItem('userId', response.data.userId);
       yield put({
         type: LOG_IN_SUCCESS,
         payload: response.data,

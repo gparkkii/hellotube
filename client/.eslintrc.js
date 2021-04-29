@@ -36,6 +36,7 @@ module.exports = {
         props: false,
       },
     ],
+    'array-callback-return': 'warn',
     'consistent-return': 'warn',
     'no-unused-vars': 'warn',
     'no-underscore-dangle': 'warn',
