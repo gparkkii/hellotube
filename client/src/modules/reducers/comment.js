@@ -6,6 +6,9 @@ export const GET_COMMENTS_FAILURE = 'get_comments_failure';
 export const SAVE_COMMENTS_REQUEST = 'save_comments_request';
 export const SAVE_COMMENTS_SUCCESS = 'save_comments_success';
 export const SAVE_COMMENTS_FAILURE = 'save_comments_failure';
+export const MY_COMMENTS_REQUEST = 'my_comments_request';
+export const MY_COMMENTS_SUCCESS = 'my_comments_success';
+export const MY_COMMENTS_FAILURE = 'my_comments_failure';
 
 const initialState = {
   getCommentLoading: false,
@@ -14,6 +17,9 @@ const initialState = {
   saveCommentLoading: false,
   saveCommentDone: false,
   saveCommentError: false,
+  myCommentLoading: false,
+  myCommentError: false,
+  myCommentDone: false,
   comments: [
     {
       writer: {},
@@ -22,6 +28,8 @@ const initialState = {
       content: '',
     },
   ],
+  myComments: [],
+  commentVideos: [],
 };
 
 /// ////////////// comment //////////////////
@@ -35,6 +43,13 @@ export const getAllComments = data => {
 export const saveComments = data => {
   return {
     type: SAVE_COMMENTS_REQUEST,
+    data,
+  };
+};
+
+export const getMyComments = data => {
+  return {
+    type: MY_COMMENTS_REQUEST,
     data,
   };
 };
@@ -70,6 +85,22 @@ export default function commentReducer(prevState = initialState, action) {
       case SAVE_COMMENTS_FAILURE:
         draft.saveCommentLoading = false;
         draft.saveCommentError = true;
+        draft.error = action.error;
+        break;
+      case MY_COMMENTS_REQUEST:
+        draft.myCommentLoading = true;
+        draft.myCommentError = null;
+        draft.myCommentDone = false;
+        break;
+      case MY_COMMENTS_SUCCESS:
+        draft.myCommentLoading = false;
+        draft.myCommentDone = true;
+        draft.myComments = action.payload.comments;
+        draft.commentVideos = action.videos;
+        break;
+      case MY_COMMENTS_FAILURE:
+        draft.myCommentLoading = false;
+        draft.myCommentError = true;
         draft.error = action.error;
         break;
       default:

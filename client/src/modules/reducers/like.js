@@ -33,37 +33,37 @@ export const IS_DISLIKED_SUCCESS = 'is_disliked_success';
 export const IS_DISLIKED_FAILURE = 'is_disliked_failure';
 
 const initialState = {
-  getLikesLoading: '',
-  getLikesError: '',
-  getLikesDone: '',
+  getLikesLoading: false,
+  getLikesError: false,
+  getLikesDone: false,
 
-  addLikeLoading: '',
-  addLikeError: '',
-  addLikeDone: '',
+  addLikeLoading: false,
+  addLikeError: false,
+  addLikeDone: false,
 
-  deleteLikeLoading: '',
-  deleteLikeError: '',
-  deleteLikeDone: '',
+  deleteLikeLoading: false,
+  deleteLikeError: false,
+  deleteLikeDone: false,
 
-  getDislikesLoading: '',
-  getDislikesError: '',
-  getDislikesDone: '',
+  getDislikesLoading: false,
+  getDislikesError: false,
+  getDislikesDone: false,
 
-  addDislikeLoading: '',
-  addDislikeError: '',
-  addDislikeDone: '',
+  addDislikeLoading: false,
+  addDislikeError: false,
+  addDislikeDone: false,
 
-  deleteDisikeLoading: '',
-  deleteDisikeError: '',
-  deleteDisikeDone: '',
+  deleteDisikeLoading: false,
+  deleteDisikeError: false,
+  deleteDisikeDone: false,
 
-  isLikedLoading: '',
-  isLikedDone: '',
-  isLikedError: '',
+  isLikedLoading: false,
+  isLikedDone: false,
+  isLikedError: false,
 
-  isDislikedLoading: '',
-  isDislikedError: '',
-  isDislikedDone: '',
+  isDislikedLoading: false,
+  isDislikedError: false,
+  isDislikedDone: false,
 
   likes: {},
   dislikes: {},

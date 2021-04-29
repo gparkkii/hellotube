@@ -8,6 +8,7 @@ const { Comment } = require("../../models/Comment");
 
 router.post('/files', (req, res) => {
   Comment.find({'videoId': req.body.videoId})
+    .sort({createdAt: -1})
     .populate('writer')
     .exec((err, comments) => {
       if(err) return res.json({ success: false, error: err})
@@ -28,6 +29,18 @@ router.post('/save', (req, res) => {
       })
   });
 })
+
+router.post('/user', (req, res) => {
+  Comment.find({'writer': req.body.writer})
+    .populate('writer')
+    .populate({path: 'videoId', populate: {path: 'writer'}})
+    .sort({createdAt: -1})
+    .exec((err, comments) => {
+      console.log(comments);
+      if(err) return res.status(400).send(err);
+      return res.status(200).json({ success: true, comments })
+    })
+  })
 
 
 module.exports = router;

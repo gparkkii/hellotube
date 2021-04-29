@@ -40,7 +40,7 @@ const SideBar = () => {
         </Tooltip>
         <Tooltip title="탐색" placement="right">
           <List isOpen={isOpen}>
-            <NavLink to="/feed/explore" activeClassName="side-active">
+            <NavLink exact to="/feed/explore" activeClassName="side-active">
               <FindInPage />
               <span>탐색</span>
             </NavLink>
@@ -48,7 +48,7 @@ const SideBar = () => {
         </Tooltip>
         <Tooltip title="구독" placement="right">
           <List isOpen={isOpen}>
-            <NavLink to="/feed/subscribe" activeClassName="side-active">
+            <NavLink exact to="/feed/subscribe" activeClassName="side-active">
               <Subscriptions />
               <span>구독</span>
             </NavLink>
@@ -56,7 +56,7 @@ const SideBar = () => {
         </Tooltip>
         <Tooltip title="내 동영상" placement="right">
           <List isOpen={isOpen}>
-            <NavLink to="/feed/myvideo" activeClassName="side-active">
+            <NavLink exact to="/feed/myvideo" activeClassName="side-active">
               <AllInbox />
               <span>내 동영상</span>
             </NavLink>
@@ -72,7 +72,7 @@ const SideBar = () => {
         </Tooltip>
         <Tooltip title="내가 댓글 단 동영상" placement="right">
           <List isOpen={isOpen}>
-            <NavLink to="/feed/mycomment" activeClassName="side-active">
+            <NavLink exact to="/feed/mycomment" activeClassName="side-active">
               <Message />
               <span>댓글 단 동영상</span>
             </NavLink>
@@ -80,7 +80,7 @@ const SideBar = () => {
         </Tooltip>
         <Tooltip title="좋아요한 동영상" placement="right">
           <List isOpen={isOpen}>
-            <NavLink to="/feed/myfavorite" activeClassName="side-active">
+            <NavLink exact to="/feed/myfavorite" activeClassName="side-active">
               <ThumbUp />
               <span>내가 좋아요한 동영상</span>
             </NavLink>
@@ -88,7 +88,7 @@ const SideBar = () => {
         </Tooltip>
         <Tooltip title="나중에 볼 동영상" placement="right">
           <List isOpen={isOpen}>
-            <NavLink to="/feed/mybookmark" activeClassName="side-active">
+            <NavLink exact to="/feed/mybookmark" activeClassName="side-active">
               <PermMedia />
               <span>나중에 볼 동영상</span>
             </NavLink>
@@ -152,7 +152,7 @@ const List = styled.div`
       background-color: ${({ theme }) => theme.inputFilled};
     }
   }
-  & .side-active {
+  & a.side-active {
     & span {
       color: #db2b25;
     }

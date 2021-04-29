@@ -10,7 +10,6 @@ import { Route, withRouter } from 'react-router-dom';
 import { MarginBox } from 'styles/form';
 
 const Feed = ({ match }) => {
-  console.log(match);
   return (
     <>
       <AppLayout>
