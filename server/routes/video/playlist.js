@@ -10,7 +10,6 @@ router.post('/save', (req, res) => {
   console.log(req.body);
   const playlist = new Playlist(req.body)
   playlist.save((err, result) => {
-    console.log(result);
     if(err) return res.status(400).send(err);
     return res.status(200).json({ success: true, result });
   })
@@ -37,7 +36,6 @@ router.post("/saved", (req, res) => {
 })
 
 router.post("/user", (req, res) => {
-  console.log(req.body);
   Playlist.find({ userId: req.body.userId })
     .populate('videoId')
     .populate({path: 'videoId', populate: {path: 'writer'}})

@@ -13,7 +13,7 @@ import {
 } from 'styles/form';
 import { Backup } from '@material-ui/icons';
 import { useForm } from 'react-hook-form';
-import { ErrorMessage, SmallMessage } from 'styles/typography';
+import { ErrorMessage, ProfileTitle, SmallMessage } from 'styles/typography';
 import { PrivateOptions, CategoryOptions } from './Options';
 
 const Content = ({ history }) => {
@@ -92,7 +92,7 @@ const Content = ({ history }) => {
 
   return (
     <>
-      <h2>동영상 업로드</h2>
+      <ProfileTitle>동영상 업로드</ProfileTitle>
       <FormBox onSubmit={handleSubmit(onSubmitHandler)}>
         <Dropzone onDrop={onDrop} multiple={false} maxsize={1000000000}>
           {({ getRootProps, getInputProps }) => (

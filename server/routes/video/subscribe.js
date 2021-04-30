@@ -53,8 +53,13 @@ router.post('/user', (req, res) => {
       Video.find({writer: {$in: subscribedUser}})
         .populate('writer')
         .exec((err, result) => {
+          let subscriber = [];
+          result.map((users) => {
+            subscriber.push(users.writer);
+          })
+          let subscribeTo = [...new Set(subscriber)];
           if(err) return res.status(400).send(err);
-          return res.status(200).json({ success: true, result });
+          return res.status(200).json({ success: true, result, subscribeTo });
         })
     })
 })

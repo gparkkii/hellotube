@@ -42,6 +42,7 @@ const initialState = {
   mySubscribeError: false,
   mySubscribes: {},
   subscriber: {},
+  subscribeTo: {},
   isSubscribe: false,
 };
 
@@ -146,6 +147,7 @@ export default function subscribeReducer(prevState = initialState, action) {
         draft.mySubscribeLoading = false;
         draft.mySubscribeDone = true;
         draft.mySubscribes = action.payload.result;
+        draft.subscribeTo = action.payload.subscribeTo;
         break;
       case MY_SUBSCRIBE_FAILURE:
         draft.mySubscribeLoading = false;
