@@ -28,6 +28,8 @@ const Subscribe = ({ Video, userId }) => {
   const onSubscribe = useCallback(() => {
     if (!userId) {
       alert('로그인이 필요한 동작입니다.');
+    } else if (Video.writer._id === userId) {
+      alert('본인의 계정은 구독할 수 없습니다.');
     } else if (isSubscribed) {
       dispatch(
         deleteSubscribe({
