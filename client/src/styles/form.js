@@ -317,5 +317,5 @@ export const InfoIcons = styled.span`
   & svg {
     color: ${props => props.isActive && '#065fd4'};
   }
-  border-bottom: ${props => props.isActive && '1px solid #065fd4'};
+  border-bottom: 1px solid ${props => props.isActive && '#065fd4'};
 `;

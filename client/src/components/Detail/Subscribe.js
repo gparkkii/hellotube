@@ -1,18 +1,61 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import UserAvatar from 'components/common/UserAvatar';
 import { Tooltip } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addSubscribe,
+  deleteSubscribe,
+  getAllSubscribe,
+  isSubscribe,
+} from 'modules/reducers/subscribe';
 
-const Subscribe = ({ Video }) => {
+const Subscribe = ({ Video, userId }) => {
+  const dispatch = useDispatch();
+  const isSubscribed = useSelector(state => state.subscribe.isSubscribe);
+  const Subscriber = useSelector(state => state.subscribe.subscriber);
+
+  useEffect(() => {
+    dispatch(getAllSubscribe({ subscribeTo: Video.writer._id }));
+    dispatch(
+      isSubscribe({
+        subscribeTo: Video.writer._id,
+        subscribeFrom: userId,
+      }),
+    );
+  }, [userId]);
+
+  const onSubscribe = useCallback(() => {
+    if (!userId) {
+      alert('로그인이 필요한 동작입니다.');
+    } else if (isSubscribed) {
+      dispatch(
+        deleteSubscribe({
+          subscribeTo: Video.writer._id,
+          subscribeFrom: userId,
+        }),
+      );
+    } else {
+      dispatch(
+        addSubscribe({ subscribeTo: Video.writer._id, subscribeFrom: userId }),
+      );
+    }
+  }, [isSubscribed, userId, Video]);
+
   return (
     <div>
-      <AvatarBox subscribed>
+      <AvatarBox subscribed={isSubscribed}>
         <div>
           <UserAvatar profileData={Video.writer} width="40px" fontSize="14px" />
-          <p>{Video.writer?.nickname}</p>
+          <span>
+            <p>{Video.writer?.nickname}</p>
+            <SubscriberNumber>구독자 {Subscriber?.length}명</SubscriberNumber>
+          </span>
         </div>
         <Tooltip title="구독 버튼">
-          <button type="button">구독중</button>
+          <button type="button" onClick={onSubscribe}>
+            {isSubscribed ? '구독중' : '구독'}
+          </button>
         </Tooltip>
       </AvatarBox>
       <Description>{Video.description}</Description>
@@ -62,4 +105,10 @@ const Description = styled.div`
   font-size: 14px;
   margin-top: 4px;
   color: ${({ theme }) => theme.textColor};
+`;
+
+const SubscriberNumber = styled.p`
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: ${({ theme }) => theme.textColor} !important;
 `;

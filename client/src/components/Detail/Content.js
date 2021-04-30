@@ -51,10 +51,9 @@ const Content = ({ videoId }) => {
             <strong>{Video.title}</strong>
             <InfoBox>
               <span>
-                <p>조회수 {Video.views}회 </p>
                 <p>
-                  {' '}
-                  ･ <UpdateTime time={Video.updatedAt} />
+                  조회수 {Video.views}회{'  '} ･ {'  '}
+                  <UpdateTime time={Video.updatedAt} />
                 </p>
               </span>
               <span>
@@ -64,10 +63,10 @@ const Content = ({ videoId }) => {
                   dislikes={Likes.dislikes}
                   userId={UserId}
                 />
-                <Playlist videoId={videoId} />
+                <Playlist videoId={videoId} userId={UserId} />
               </span>
             </InfoBox>
-            <Subscribe Video={Video} />
+            <Subscribe Video={Video} userId={UserId} />
             <Comment Video={Video} />
           </>
         )}

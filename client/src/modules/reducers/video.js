@@ -15,12 +15,15 @@ const initialState = {
   getVideoLoading: false,
   getVideoDone: false,
   getVideoError: false,
+
   currentVideoLoading: false,
   currentVideoDone: false,
   currentVideoError: false,
+
   myVideosLoading: false,
   myVideosDone: false,
   myVideosError: false,
+
   videos: {
     views: 0,
     _id: '',
