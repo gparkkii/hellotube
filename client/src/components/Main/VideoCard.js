@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import UpdateTime from 'library/utils/UpdateTime';
+import VideoDuration from 'library/utils/VideoDuration';
 import UserAvatar from '../common/UserAvatar';
 
 const VideoCard = ({ video }) => {
@@ -15,7 +16,7 @@ const VideoCard = ({ video }) => {
           <img src={video.thumbnail} alt={video.thumbnail} />
           <Duration>
             <span>
-              {minutes} : {seconds}
+              <VideoDuration duration={video.fileDuration} />
             </span>
           </Duration>
         </ImgBox>
