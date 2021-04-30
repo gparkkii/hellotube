@@ -310,6 +310,7 @@ export const BlankName = styled.div`
 `;
 
 export const InfoIcons = styled.span`
+  padding-bottom: 4px;
   & p {
     font-weight: ${props => props.isActive && '600'};
     color: ${props => props.isActive && '#065fd4'};

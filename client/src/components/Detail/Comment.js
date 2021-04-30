@@ -44,8 +44,7 @@ export default Comment;
 const CommentBox = styled.div`
   width: 100%;
   margin-top: 20px;
-  padding-top: 20px;
-  padding-bottom: 40px;
+  padding: 20px 0px;
   border-top: ${({ theme }) => theme.borderColor};
   border-bottom: ${({ theme }) => theme.borderColor};
   & h2 {
