@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: 100%;
     line-height: 1.5;
+    letter-spacing: -0.01;
     margin: 0 auto;
     font-family:
       "Assistant",

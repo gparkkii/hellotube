@@ -88,3 +88,17 @@ export const SmallMessage = styled.div`
   text-align: center;
   padding: 4px 0px;
 `;
+
+export const FeedHeader = styled.div`
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  & h2 {
+    font-size: 22px;
+    font-weight: 600;
+  }
+`;
