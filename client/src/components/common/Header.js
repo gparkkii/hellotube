@@ -45,12 +45,18 @@ const Header = () => {
                 </IconButton>
               </Tooltip>
               <Tooltip title="내 동영상">
-                <IconButton
-                  aria-label="bookmark"
+                <NavLink
+                  exact
+                  to="/feed/myvideo"
                   activeClassName="header-active"
                 >
-                  <AllInbox style={{ fontSize: 24 }} />
-                </IconButton>
+                  <IconButton
+                    aria-label="playlist"
+                    activeClassName="header-active"
+                  >
+                    <AllInbox style={{ fontSize: 24 }} />
+                  </IconButton>
+                </NavLink>
               </Tooltip>
               <Tooltip title="동영상 업로드">
                 <NavLink exact to="/upload" activeClassName="header-active">

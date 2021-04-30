@@ -83,7 +83,7 @@ const Title = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 12px;
   margin-left: 10px;
   & span {
