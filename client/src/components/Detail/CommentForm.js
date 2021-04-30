@@ -90,4 +90,9 @@ const StyledForm = styled.form`
       border-bottom: 2px solid ${({ theme }) => theme.textColor};
     }
   }
+  & button {
+    & svg {
+      color: ${({ theme }) => theme.iconColor};
+    }
+  }
 `;

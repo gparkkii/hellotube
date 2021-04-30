@@ -52,7 +52,7 @@ export const GridContainer = styled.div`
   grid-template-rows: repeat(3, 1fr);
   gap: 20px;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 140px);
   transition: all 0.2s ease;
   & a {
     width: 100%;

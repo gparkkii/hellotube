@@ -54,14 +54,6 @@ const SideBar = () => {
             </NavLink>
           </List>
         </Tooltip>
-        <Tooltip title="내 동영상" placement="right">
-          <List isOpen={isOpen}>
-            <NavLink exact to="/feed/myvideo" activeClassName="side-active">
-              <AllInbox />
-              <span>내 동영상</span>
-            </NavLink>
-          </List>
-        </Tooltip>
         <Tooltip title="동영상 업로드" placement="right">
           <List isOpen={isOpen}>
             <NavLink exact to="/upload" activeClassName="side-active">
@@ -70,11 +62,19 @@ const SideBar = () => {
             </NavLink>
           </List>
         </Tooltip>
-        <Tooltip title="내가 댓글 단 동영상" placement="right">
+        <Tooltip title="내 동영상" placement="right">
+          <List isOpen={isOpen}>
+            <NavLink exact to="/feed/myvideo" activeClassName="side-active">
+              <AllInbox />
+              <span>내 동영상</span>
+            </NavLink>
+          </List>
+        </Tooltip>
+        <Tooltip title="댓글 단 동영상" placement="right">
           <List isOpen={isOpen}>
             <NavLink exact to="/feed/mycomment" activeClassName="side-active">
               <Message />
-              <span>댓글 단 동영상</span>
+              <span>내가 댓글 단 동영상</span>
             </NavLink>
           </List>
         </Tooltip>
@@ -86,11 +86,11 @@ const SideBar = () => {
             </NavLink>
           </List>
         </Tooltip>
-        <Tooltip title="나중에 볼 동영상" placement="right">
+        <Tooltip title="저장한 동영상" placement="right">
           <List isOpen={isOpen}>
-            <NavLink exact to="/feed/mybookmark" activeClassName="side-active">
+            <NavLink exact to="/feed/myplaylist" activeClassName="side-active">
               <PermMedia />
-              <span>나중에 볼 동영상</span>
+              <span>내가 저장한 동영상</span>
             </NavLink>
           </List>
         </Tooltip>

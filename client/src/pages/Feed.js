@@ -1,6 +1,6 @@
 import AppLayout from 'components/common/AppLayout';
 import Explore from 'components/Feed/Explore';
-import MyBookmark from 'components/Feed/MyBookmark';
+import MyPlaylist from 'components/Feed/MyPlaylist';
 import MyComment from 'components/Feed/MyComment';
 import MyFavorite from 'components/Feed/MyFavorite';
 import MyVideo from 'components/Feed/MyVideo';
@@ -20,7 +20,7 @@ const Feed = ({ match }) => {
           <Route path={`${match.path}/myvideo`} component={MyVideo} />
           <Route path={`${match.path}/mycomment`} component={MyComment} />
           <Route path={`${match.path}/myfavorite`} component={MyFavorite} />
-          <Route path={`${match.path}/mybookmark`} component={MyBookmark} />
+          <Route path={`${match.path}/myplaylist`} component={MyPlaylist} />
         </MarginBox>
       </AppLayout>
     </>

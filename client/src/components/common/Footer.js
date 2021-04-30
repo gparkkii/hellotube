@@ -1,9 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const Footer = () => {
+  const isAuth = useSelector(state => state.user.data.isAuth);
+
   return (
-    <StyledFooter>
+    <StyledFooter isAuth={isAuth}>
       <a
         href="https://github.com/gparkkii"
         target="_blank"
@@ -52,6 +55,7 @@ const StyledFooter = styled.footer`
   width: 100%;
   height: 80px;
   padding: 0px 24px;
+  padding-left: ${props => props.isAuth && '72px'};
   font-size: 14px;
   color: #999;
   & a {

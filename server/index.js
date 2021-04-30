@@ -13,6 +13,7 @@ const videoRouter = require('./routes/video/video');
 const likeRouter = require('./routes/video/like');
 const commentRouter = require('./routes/video/comment');
 const subscribeRouter = require('./routes/video/subscribe');
+const playlistRouter = require('./routes/video/playlist');
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use('/video', videoRouter);
 app.use('/like', likeRouter);
 app.use('/comment', commentRouter);
 app.use('/subscribe', subscribeRouter);
+app.use('/playlist', playlistRouter);
 
 //============= API ==============//
 app.use('/auth', authRouter);
