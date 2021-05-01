@@ -6,12 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addLike, deleteLike } from 'modules/reducers/like';
 import { InfoIcons } from 'styles/form';
 
-const Like = ({ videoId, userId, likes }) => {
+const Like = ({ videoId, userId, likes, isAuth }) => {
   const dispatch = useDispatch();
   const isLiked = useSelector(state => state.likes.isLiked);
 
   const onClickLike = useCallback(() => {
-    if (!userId) {
+    if (!isAuth) {
       alert('로그인이 필요한 동작입니다.');
     } else if (isLiked) {
       dispatch(deleteLike({ videoId, userId }));

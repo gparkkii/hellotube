@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addDislike, deleteDislike } from 'modules/reducers/like';
 import { InfoIcons } from 'styles/form';
 
-const Dislike = ({ videoId, userId, dislikes }) => {
+const Dislike = ({ videoId, userId, dislikes, isAuth }) => {
   const dispatch = useDispatch();
   const isDisliked = useSelector(state => state.likes.isDisliked);
 
   const onClickDislike = useCallback(() => {
-    if (!userId) {
+    if (!isAuth) {
       alert('로그인이 필요한 동작입니다.');
     } else if (isDisliked) {
       dispatch(deleteDislike({ videoId, userId }));

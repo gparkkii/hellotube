@@ -7,26 +7,19 @@ import {
   addSubscribe,
   deleteSubscribe,
   getAllSubscribe,
-  isSubscribe,
 } from 'modules/reducers/subscribe';
 
-const Subscribe = ({ Video, userId }) => {
+const Subscribe = ({ Video, userId, isAuth }) => {
   const dispatch = useDispatch();
   const isSubscribed = useSelector(state => state.subscribe.isSubscribe);
   const Subscriber = useSelector(state => state.subscribe.subscriber);
 
   useEffect(() => {
     dispatch(getAllSubscribe({ subscribeTo: Video.writer._id }));
-    dispatch(
-      isSubscribe({
-        subscribeTo: Video.writer._id,
-        subscribeFrom: userId,
-      }),
-    );
   }, [userId]);
 
   const onSubscribe = useCallback(() => {
-    if (!userId) {
+    if (!isAuth) {
       alert('로그인이 필요한 동작입니다.');
     } else if (Video.writer._id === userId) {
       alert('본인의 계정은 구독할 수 없습니다.');

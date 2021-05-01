@@ -43,6 +43,7 @@ module.exports = {
     'no-return-assign': 'warn',
     'no-console': 'off',
     'import/prefer-default-export': 'off',
+    'react/no-array-index-key': 'warn',
     'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 'off',
     camelcase: ['error', { ignoreImports: true }],

@@ -8,10 +8,12 @@ import {
   setisDislike,
   setisLike,
 } from 'modules/reducers/like';
+import { getIsPlaylist } from 'modules/reducers/playlist';
+import { isSubscribe } from 'modules/reducers/subscribe';
 import { SideContainer } from 'styles/container';
+import { media } from 'styles/media_query';
 import styled from 'styled-components';
 import UpdateTime from 'library/utils/UpdateTime';
-import { media } from 'styles/media_query';
 import Subscribe from './Subscribe';
 import Comment from './Comment';
 import Dislike from './Dislike';
@@ -24,14 +26,24 @@ const Content = ({ videoId }) => {
   const status = useSelector(state => state.video);
   const Video = useSelector(state => state.video.currentVideo);
   const Likes = useSelector(state => state.likes);
+  const isAuth = useSelector(state => state.user.data.isAuth);
   const UserId = window.localStorage.getItem('userId');
 
   useEffect(() => {
     dispatch(getCurrentVideos({ videoId }));
     dispatch(getAllLikes({ videoId }));
     dispatch(getAllDislikes({ videoId }));
-    dispatch(setisLike({ videoId, userId: UserId }));
-    dispatch(setisDislike({ videoId, userId: UserId }));
+    if (isAuth) {
+      dispatch(setisLike({ videoId, userId: UserId }));
+      dispatch(setisDislike({ videoId, userId: UserId }));
+      dispatch(getIsPlaylist({ videoId, userId: UserId }));
+      dispatch(
+        isSubscribe({
+          subscribeTo: Video.writer._id,
+          subscribeFrom: UserId,
+        }),
+      );
+    }
   }, [videoId, UserId]);
 
   return (
@@ -60,17 +72,23 @@ const Content = ({ videoId }) => {
                   </p>
                 </span>
                 <span>
-                  <Like videoId={videoId} likes={Likes.likes} userId={UserId} />
+                  <Like
+                    videoId={videoId}
+                    likes={Likes.likes}
+                    userId={UserId}
+                    isAuth={isAuth}
+                  />
                   <Dislike
                     videoId={videoId}
                     dislikes={Likes.dislikes}
                     userId={UserId}
+                    isAuth={isAuth}
                   />
-                  <Playlist videoId={videoId} userId={UserId} />
+                  <Playlist videoId={videoId} userId={UserId} isAuth={isAuth} />
                 </span>
               </InfoBox>
-              <Subscribe Video={Video} userId={UserId} />
-              <Comment Video={Video} />
+              <Subscribe Video={Video} userId={UserId} isAuth={isAuth} />
+              <Comment Video={Video} isAuth={isAuth} />
             </>
           )}
         </SideContainer>
