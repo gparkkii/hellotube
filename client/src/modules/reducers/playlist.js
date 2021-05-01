@@ -83,7 +83,7 @@ export default function playlistReducer(prevState = initialState, action) {
         draft.addPlaylistLoading = false;
         draft.addPlaylistDone = true;
         draft.isPlaylist = true;
-        draft.myPlaylists.push(action.payload.result);
+        draft.myPlaylists.unshift(action.payload.result);
         break;
       case ADD_PLAYLIST_FAILURE:
         draft.addPlaylistLoading = false;

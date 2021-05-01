@@ -80,7 +80,7 @@ export default function commentReducer(prevState = initialState, action) {
       case SAVE_COMMENTS_SUCCESS:
         draft.saveCommentLoading = false;
         draft.saveCommentDone = true;
-        draft.comments.push(action.payload.result[0]);
+        draft.comments.unshift(action.payload.result[0]);
         break;
       case SAVE_COMMENTS_FAILURE:
         draft.saveCommentLoading = false;
