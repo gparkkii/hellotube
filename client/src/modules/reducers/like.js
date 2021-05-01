@@ -73,8 +73,8 @@ const initialState = {
   myLikesError: false,
   myLikesDone: false,
 
-  likes: {},
-  dislikes: {},
+  likes: [],
+  dislikes: [],
   isLiked: false,
   isDisliked: false,
 };

@@ -40,9 +40,9 @@ const initialState = {
   mySubscribeLoading: false,
   mySubscribeDone: false,
   mySubscribeError: false,
-  mySubscribes: {},
-  subscriber: {},
-  subscribeTo: {},
+  mySubscribes: [],
+  subscriber: [],
+  subscribeTo: [],
   isSubscribe: false,
 };
 

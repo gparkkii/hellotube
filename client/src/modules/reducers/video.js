@@ -38,8 +38,8 @@ const initialState = {
     fileDuration: '',
     writer: {},
   },
-  currentVideo: {},
-  myVideos: {},
+  currentVideo: [],
+  myVideos: [],
 };
 
 export const getAllVideos = () => {

@@ -9,7 +9,6 @@ import {
   setisLike,
 } from 'modules/reducers/like';
 import { getIsPlaylist } from 'modules/reducers/playlist';
-import { isSubscribe } from 'modules/reducers/subscribe';
 import { SideContainer } from 'styles/container';
 import { media } from 'styles/media_query';
 import styled from 'styled-components';
@@ -33,17 +32,6 @@ const Content = ({ videoId }) => {
     dispatch(getCurrentVideos({ videoId }));
     dispatch(getAllLikes({ videoId }));
     dispatch(getAllDislikes({ videoId }));
-    if (isAuth) {
-      dispatch(setisLike({ videoId, userId: UserId }));
-      dispatch(setisDislike({ videoId, userId: UserId }));
-      dispatch(getIsPlaylist({ videoId, userId: UserId }));
-      dispatch(
-        isSubscribe({
-          subscribeTo: Video.writer._id,
-          subscribeFrom: UserId,
-        }),
-      );
-    }
   }, [videoId, UserId]);
 
   return (

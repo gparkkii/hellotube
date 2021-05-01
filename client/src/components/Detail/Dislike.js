@@ -1,13 +1,19 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { IconButton, Tooltip } from '@material-ui/core';
 import { ThumbDown } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDislike, deleteDislike } from 'modules/reducers/like';
+import { addDislike, deleteDislike, setisDislike } from 'modules/reducers/like';
 import { InfoIcons } from 'styles/form';
 
 const Dislike = ({ videoId, userId, dislikes, isAuth }) => {
   const dispatch = useDispatch();
   const isDisliked = useSelector(state => state.likes.isDisliked);
+
+  useEffect(() => {
+    if (isAuth) {
+      dispatch(setisDislike({ videoId, userId }));
+    }
+  }, [userId]);
 
   const onClickDislike = useCallback(() => {
     if (!isAuth) {

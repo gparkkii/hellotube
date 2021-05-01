@@ -17,7 +17,6 @@ import {
 } from '../reducers/playlist';
 
 function addPlaylistAPI(data) {
-  console.log(data);
   return axios
     .post('/api/playlist/save', data)
     .then(response => ({ response }));

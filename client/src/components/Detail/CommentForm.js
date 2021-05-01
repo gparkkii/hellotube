@@ -23,12 +23,18 @@ const CommentForm = ({ Video, Comment }) => {
 
   const onSubmit = useCallback(
     data => {
-      const variables = {
-        content: data.comment,
-        writer: userData._id,
-        videoId: Video._id,
-        commentTo: `${Comment ? Comment.writer._id : Video.writer._id}`,
-      };
+      const variables = Comment
+        ? {
+            content: data.comment,
+            writer: userData._id,
+            videoId: Video._id,
+            commentTo: Comment._id,
+          }
+        : {
+            content: data.comment,
+            writer: userData._id,
+            videoId: Video._id,
+          };
       if (variables.writer === variables.commentTo) {
         alert('본인의 댓글에 댓글을 달 수 없습니다.');
       } else {

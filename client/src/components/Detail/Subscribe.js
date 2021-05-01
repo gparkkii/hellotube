@@ -7,6 +7,7 @@ import {
   addSubscribe,
   deleteSubscribe,
   getAllSubscribe,
+  isSubscribe,
 } from 'modules/reducers/subscribe';
 
 const Subscribe = ({ Video, userId, isAuth }) => {
@@ -15,6 +16,14 @@ const Subscribe = ({ Video, userId, isAuth }) => {
   const Subscriber = useSelector(state => state.subscribe.subscriber);
 
   useEffect(() => {
+    if (isAuth) {
+      dispatch(
+        isSubscribe({
+          subscribeTo: Video.writer._id,
+          subscribeFrom: userId,
+        }),
+      );
+    }
     dispatch(getAllSubscribe({ subscribeTo: Video.writer._id }));
   }, [userId]);
 

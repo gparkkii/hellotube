@@ -6,11 +6,10 @@ import CommentCard from './CommentCard';
 import CommentForm from './CommentForm';
 import CommentReply from './CommentReply';
 
-const Comment = ({ Video }) => {
+const Comment = ({ Video, isAuth }) => {
   const dispatch = useDispatch();
   const status = useSelector(state => state.comment);
   const Comments = useSelector(state => state.comment.comments);
-  const userData = useSelector(state => state.user.profile);
 
   useEffect(() => {
     dispatch(getAllComments(Video._id));
@@ -19,16 +18,16 @@ const Comment = ({ Video }) => {
   return (
     <CommentBox>
       <h2>댓글 {(status.getCommentDone && Comments.length) || 0}개</h2>
-      {userData && <CommentForm Video={Video} />}
+      {isAuth && <CommentForm Video={Video} />}
       {status.getCommentDone &&
         Comments?.map(comment => {
           return (
-            Video.writer._id === comment.commentTo && (
+            !comment.commentTo && (
               <React.Fragment key={comment._id}>
-                <CommentCard Comment={comment} Video={Video} />
+                <CommentCard Comment={comment} Video={Video} isAuth={isAuth} />
                 <CommentReply
                   Comments={Comments}
-                  ParentComment={comment.writer._id}
+                  ParentComment={comment._id}
                   Video={Video}
                 />
               </React.Fragment>

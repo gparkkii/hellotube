@@ -26,7 +26,7 @@ const MySubscribe = () => {
           Subscribed.subscribeTo.map(user => {
             return (
               <span key={user._id}>
-                <UserAvatar profileData={user} width="64px" fontSize="20px" />
+                <UserAvatar profileData={user} width="60px" fontSize="20px" />
                 <p>{user.nickname}</p>
               </span>
             );

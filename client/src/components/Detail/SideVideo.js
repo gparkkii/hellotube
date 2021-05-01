@@ -5,9 +5,6 @@ import UpdateTime from 'library/utils/UpdateTime';
 import VideoDuration from 'library/utils/VideoDuration';
 
 const SideVideo = ({ video }) => {
-  const minutes = Math.floor(video.fileDuration / 60);
-  const seconds = Math.floor(video.fileDuration - minutes * 60);
-
   return (
     <>
       <Link to={`/watch/${video._id}`}>

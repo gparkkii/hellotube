@@ -1,14 +1,20 @@
 /* eslint-disable array-callback-return */
-import React, { useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { IconButton, Tooltip } from '@material-ui/core';
 import { ThumbUp } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { addLike, deleteLike } from 'modules/reducers/like';
+import { addLike, deleteLike, setisLike } from 'modules/reducers/like';
 import { InfoIcons } from 'styles/form';
 
 const Like = ({ videoId, userId, likes, isAuth }) => {
   const dispatch = useDispatch();
   const isLiked = useSelector(state => state.likes.isLiked);
+
+  useEffect(() => {
+    if (isAuth) {
+      dispatch(setisLike({ videoId, userId }));
+    }
+  }, [userId]);
 
   const onClickLike = useCallback(() => {
     if (!isAuth) {

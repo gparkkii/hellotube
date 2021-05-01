@@ -27,7 +27,7 @@ const CommentReply = ({ Comments, Video, ParentComment }) => {
               <CommentCard Comment={comment} Video={Video} />
               <CommentReply
                 Comments={Comments}
-                ParentComment={comment.writer._id}
+                ParentComment={comment._id}
                 Video={Video}
               />
             </div>

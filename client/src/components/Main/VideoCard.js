@@ -6,9 +6,6 @@ import VideoDuration from 'library/utils/VideoDuration';
 import UserAvatar from '../common/UserAvatar';
 
 const VideoCard = ({ video }) => {
-  const minutes = Math.floor(video.fileDuration / 60);
-  const seconds = Math.floor(video.fileDuration - minutes * 60);
-
   return (
     <>
       <Link to={`/watch/${video._id}`}>
