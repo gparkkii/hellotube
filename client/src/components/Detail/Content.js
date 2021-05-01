@@ -2,13 +2,7 @@ import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentVideos } from 'modules/reducers/video';
-import {
-  getAllDislikes,
-  getAllLikes,
-  setisDislike,
-  setisLike,
-} from 'modules/reducers/like';
-import { getIsPlaylist } from 'modules/reducers/playlist';
+import { getAllDislikes, getAllLikes } from 'modules/reducers/like';
 import { SideContainer } from 'styles/container';
 import { media } from 'styles/media_query';
 import styled from 'styled-components';
@@ -22,10 +16,12 @@ import DetailSide from './DetailSide';
 
 const Content = ({ videoId }) => {
   const dispatch = useDispatch();
-  const status = useSelector(state => state.video);
-  const Video = useSelector(state => state.video.currentVideo);
-  const Likes = useSelector(state => state.likes);
-  const isAuth = useSelector(state => state.user.data.isAuth);
+  const { status, Video, Likes, isAuth } = useSelector(state => ({
+    status: state.video,
+    Video: state.video.currentVideo,
+    Likes: state.likes,
+    isAuth: state.user.data.isAuth,
+  }));
   const UserId = window.localStorage.getItem('userId');
 
   useEffect(() => {

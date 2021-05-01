@@ -67,15 +67,11 @@ function myCommentsAPI(data) {
 function* myComments(action) {
   try {
     const { response } = yield call(myCommentsAPI, action.data);
-    const videos = [];
     if (response.data.success) {
-      response.data.comments.map(comment => {
-        return videos.push(comment.videoId);
-      });
       yield put({
         type: MY_COMMENTS_SUCCESS,
-        payload: response.data,
-        videos,
+        payload: response.data.comments,
+        videos: response.data.videos,
       });
     }
   } catch (err) {

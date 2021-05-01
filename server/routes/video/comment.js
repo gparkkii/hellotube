@@ -36,9 +36,13 @@ router.post('/user', (req, res) => {
     .populate({path: 'videoId', populate: {path: 'writer'}})
     .sort({createdAt: -1})
     .exec((err, comments) => {
-      console.log(comments);
+      let commented = [];
+      comments.map((comment) => {
+        commented.push(comment.videoId);
+      })
+      const videos = [...new Set(commented)];
       if(err) return res.status(400).send(err);
-      return res.status(200).json({ success: true, comments })
+      return res.status(200).json({ success: true, comments, videos })
     })
   })
 
