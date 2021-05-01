@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import UserAvatar from 'components/common/UserAvatar';
 import UpdateTime from 'library/utils/UpdateTime';
 import { Tooltip } from '@material-ui/core';
-import { useSelector } from 'react-redux';
+import SplitText from 'library/utils/SplitText';
 import CommentForm from './CommentForm';
 
-const CommentCard = ({ Comment, Video }) => {
+const CommentCard = ({ Comment, Video, isAuth }) => {
   const [OpenReply, setOpenReply] = useState(false);
-  const isAuth = useSelector(state => state.user.data.isAuth);
 
   return (
     <>
@@ -22,24 +21,24 @@ const CommentCard = ({ Comment, Video }) => {
                 <UpdateTime time={Comment.updatedAt} />
               </p>
             </span>
-            <Text>{Comment.content}</Text>
+            <Text>
+              <SplitText content={Comment.content} />
+            </Text>
           </div>
           <IconBox>
-            <Tooltip title="답글 달기">
-              <button
-                type="button"
-                onClick={e => {
-                  e.preventDefault();
-                  if (!isAuth) {
-                    alert('로그인이 필요한 동작입니다.');
-                  } else {
+            {isAuth && (
+              <Tooltip title="답글 달기">
+                <button
+                  type="button"
+                  onClick={e => {
+                    e.preventDefault();
                     setOpenReply(!OpenReply);
-                  }
-                }}
-              >
-                답글 달기
-              </button>
-            </Tooltip>
+                  }}
+                >
+                  답글 달기
+                </button>
+              </Tooltip>
+            )}
           </IconBox>
           {OpenReply && <CommentForm Video={Video} Comment={Comment} />}
         </CommentText>
