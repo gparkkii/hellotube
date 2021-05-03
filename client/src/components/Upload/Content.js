@@ -14,7 +14,7 @@ import {
 import { Backup } from '@material-ui/icons';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage, ProfileTitle, SmallMessage } from 'styles/typography';
-import { PrivateOptions, CategoryOptions } from './Options';
+import { PrivateOptions, CategoryOptions } from '../../library/options/upload';
 
 const Content = ({ history }) => {
   const {

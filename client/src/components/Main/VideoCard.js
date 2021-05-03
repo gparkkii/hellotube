@@ -35,7 +35,7 @@ const VideoCard = ({ video }) => {
               <p>조회수 {video.views}회 </p>
               <p>
                 {' '}
-                ･ <UpdateTime time={video.updatedAt} />
+                ･ <UpdateTime time={video.createdAt} />
               </p>
             </div>
           </InfoBox>

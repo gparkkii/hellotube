@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Video } = require("../../models/Video");
 
+
 //=================================
 //          Video Infos
 //=================================
@@ -9,6 +10,26 @@ const { Video } = require("../../models/Video");
 router.get('/files', (req, res) => {
   Video.find()
     .sort({createdAt: -1})
+    .populate("writer")
+    .exec((err, videos) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).json({ success: true, videos })
+    })
+})
+
+router.get('/files/trending', (req, res) => {
+  Video.find()
+    .sort({views: -1})
+    .populate("writer")
+    .exec((err, videos) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).json({ success: true, videos })
+    })
+})
+
+router.post('/files/explore', (req, res) => {
+  Video.find({category: req.body.category})
+    .sort({views: -1})
     .populate("writer")
     .exec((err, videos) => {
       if (err) return res.status(400).send(err);
