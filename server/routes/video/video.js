@@ -25,6 +25,9 @@ router.post('/detail', (req, res) => {
     .populate('writer')
     .exec((err, video) => {
       if(err) return res.status(400).send(err)
+      video.views++;
+      video.save();
+      console.log(video);
       return res.status(200).json({ success: true, video })
     })
 })
