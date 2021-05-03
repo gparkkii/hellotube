@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { GridContainer } from 'styles/container';
 import { getAllVideos } from 'modules/reducers/video';
+import EmptyStates from 'components/common/EmptyState';
 import VideoCard from './VideoCard';
 
 const Content = () => {
@@ -15,6 +16,9 @@ const Content = () => {
 
   return (
     <>
+      {Video.videos.length === 0 && (
+        <EmptyStates statement="동영상을 업로드 해주세요" />
+      )}
       <GridContainer>
         {Video.getVideoDone &&
           Video.videos.map(video => {

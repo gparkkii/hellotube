@@ -6,6 +6,7 @@ import { FeedHeader } from 'styles/typography';
 import styled from 'styled-components';
 import VideoCard from 'components/Main/VideoCard';
 import UserAvatar from 'components/common/UserAvatar';
+import EmptyStates from 'components/common/EmptyState';
 
 const MySubscribe = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,9 @@ const MySubscribe = () => {
         <h2>내가 구독한 유튜버</h2>
       </FeedHeader>
       <AvatarBox>
+        {Subscribed.subscribeTo.length === 0 && (
+          <EmptyStates statement="유튜버를 구독해보세요!" />
+        )}
         {Subscribed.mySubscribeDone &&
           Subscribed.subscribeTo.map(user => {
             return (
