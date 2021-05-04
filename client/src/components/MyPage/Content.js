@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { FeedHeader } from 'styles/typography';
 import UserProfile from './UserProfile';
 
 const Content = () => {
@@ -7,7 +8,10 @@ const Content = () => {
 
   return (
     <div>
-      <UserProfile profileData={profileData} />
+      <FeedHeader>
+        <h2>내 프로필</h2>
+      </FeedHeader>
+      {/* <UserProfile profileData={profileData} /> */}
     </div>
   );
 };

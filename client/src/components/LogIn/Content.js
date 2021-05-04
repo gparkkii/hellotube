@@ -18,6 +18,7 @@ import StyledCheckBox from 'styles/StyledCheckBox';
 import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import { CircularProgress } from '@material-ui/core';
 import OAuthLogin from './OAuth/OAuthLogin';
 
 function Content({ history }) {
@@ -51,7 +52,6 @@ function Content({ history }) {
   };
 
   const onSubmit = useCallback(user => {
-    console.log(user);
     dispatch(loginUser(user));
   }, []);
 

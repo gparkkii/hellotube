@@ -1,14 +1,14 @@
 import React from 'react';
 import AppLayout from 'components/common/AppLayout';
-import { FlexContainer } from 'styles/container';
 import Content from 'components/MyPage/Content';
+import { MarginBox } from 'styles/form';
 
 const MyPage = () => {
   return (
     <AppLayout>
-      <FlexContainer>
+      <MarginBox margin="20px">
         <Content />
-      </FlexContainer>
+      </MarginBox>
     </AppLayout>
   );
 };
