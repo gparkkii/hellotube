@@ -21,14 +21,16 @@ const Content = () => {
         <EmptyStates statement="동영상을 업로드 해주세요" />
       )}
       <GridContainer>
-        {Video.getVideoDone &&
+        {/* {Video.getVideoDone &&
           Video.videos.map(video => {
             return <VideoCard key={video._id} video={video} />;
-          })}
-        {Video.getVideoLoading &&
-          Array(12)
-            .fill(' ')
-            .map(index => <VideoSkeleton key={index} />)}
+          })} */}
+        {/* {Video.getVideoLoading &&} */}
+        {Array(12)
+          .fill(' ')
+          .map(index => (
+            <VideoSkeleton key={index} />
+          ))}
       </GridContainer>
     </>
   );

@@ -5,7 +5,9 @@ const VideoSkeleton = () => {
   return (
     <VideoBox>
       <Thumbnail>
-        <div />
+        <div>
+          <img src="" alt="empty" />
+        </div>
       </Thumbnail>
       <TitleBox>
         <Avatar />
@@ -21,6 +23,9 @@ const VideoSkeleton = () => {
 export default VideoSkeleton;
 
 const VideoBox = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,11 +33,18 @@ const VideoBox = styled.div`
 `;
 
 const Thumbnail = styled.div`
-  position: relative;
-  width: 348px;
-  height: 180px;
+  width: 100%;
+  height: 70%;
   background-color: #eaeaea;
   border-radius: 4px;
+  & div {
+    width: 100%;
+    height: 70%;
+  }
+  & img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const TitleBox = styled.div`
